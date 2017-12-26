@@ -33,16 +33,18 @@
 <link rel="canonical" href="http://yoursite.com/2017/12/21/Java字节序列化框架/"/>
 
 
-<meta name="description" content="明天再写，今天先测试下插件">
+<meta name="description" content="互联网环境中请求数据一般采用json格式，解析比较容易。嵌入式设备间通信常常采用字节流传输，通信过程中需要逐个字节、甚至逐个位去读取，非常麻烦。Java语言与字节编码互相转换的框架实际上是有的，比如说Javolution，可以把C语言的结构体转换为Java类，但是国内用户很少，文档稀少，转换某些结构有bug，难以解决，于是打算自己写一个字节序列化框架。 思路嵌入式设备通信过程中的字节数据，实际上代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java字节序列化框架">
 <meta property="og:url" content="http://yoursite.com/2017/12/21/Java字节序列化框架/index.html">
 <meta property="og:site_name" content="XuDing的音符">
-<meta property="og:description" content="明天再写，今天先测试下插件">
-<meta property="og:updated_time" content="2017-12-20T16:17:12.532Z">
+<meta property="og:description" content="互联网环境中请求数据一般采用json格式，解析比较容易。嵌入式设备间通信常常采用字节流传输，通信过程中需要逐个字节、甚至逐个位去读取，非常麻烦。Java语言与字节编码互相转换的框架实际上是有的，比如说Javolution，可以把C语言的结构体转换为Java类，但是国内用户很少，文档稀少，转换某些结构有bug，难以解决，于是打算自己写一个字节序列化框架。 思路嵌入式设备通信过程中的字节数据，实际上代">
+<meta property="og:image" content="http://p19ndm3gs.bkt.clouddn.com/15143111578529kfdk9lv.png?imageslim">
+<meta property="og:updated_time" content="2017-12-26T18:02:43.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字节序列化框架">
-<meta name="twitter:description" content="明天再写，今天先测试下插件">
+<meta name="twitter:description" content="互联网环境中请求数据一般采用json格式，解析比较容易。嵌入式设备间通信常常采用字节流传输，通信过程中需要逐个字节、甚至逐个位去读取，非常麻烦。Java语言与字节编码互相转换的框架实际上是有的，比如说Javolution，可以把C语言的结构体转换为Java类，但是国内用户很少，文档稀少，转换某些结构有bug，难以解决，于是打算自己写一个字节序列化框架。 思路嵌入式设备通信过程中的字节数据，实际上代">
+<meta name="twitter:image" content="http://p19ndm3gs.bkt.clouddn.com/15143111578529kfdk9lv.png?imageslim">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
@@ -117,7 +119,9 @@
 
     
             <div class="post-content">
-            <p>明天再写，今天先测试下插件</p>
+            <p>互联网环境中请求数据一般采用json格式，解析比较容易。嵌入式设备间通信常常采用字节流传输，通信过程中需要逐个字节、甚至逐个位去读取，非常麻烦。<br>Java语言与字节编码互相转换的框架实际上是有的，比如说Javolution，可以把C语言的结构体转换为Java类，但是国内用户很少，文档稀少，转换某些结构有bug，难以解决，于是打算自己写一个字节序列化框架。</p>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>嵌入式设备通信过程中的字节数据，实际上代表的就是嵌入式程序中的C语言结构体；解析这些字节数据，实际上就是把c语言结构体对应的内存数据翻译成java对象。<br>字节数据可以逐个解析，c语言中的一个类型可能对应一个或多个字节，定义类型对象PType类用来描述C语言中的单字节数据、多字节数据、字符串、字节数组等，定义PStruct类来描述一组通信数据，一个PStruct可以关联多个PType。 </p>
+<h5 id="相关类图："><a href="#相关类图：" class="headerlink" title="相关类图："></a>相关类图：</h5><p><img src="http://p19ndm3gs.bkt.clouddn.com/15143111578529kfdk9lv.png?imageslim" alt="paste image"></p>
 
             </div>
           
