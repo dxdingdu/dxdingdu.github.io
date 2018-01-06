@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="编程练习2012Q4——24点四则混合运算"/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2012/12/09/post402/"/>
+
+
+<meta name="description" content="第四季度的题比较有意思，给1~10，选4个数字，要求找到用这4个数进行运算，结果要为24的运算方法，输出，4个数顺序可以调换，可以使用括号，但如果本身运算优先级正确的情况下，不能再加括号。另外，这4个数可能重复。 这次的题很灵活，因为4个数运算结果要为24，不一定只有一种运算啊，可能用很多很多组呢，问了下牛秘，牛秘书说：只要输出一种，如果输出运算方式较简单，那就最好！这样的回答让人比较激动，因为显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程练习2012Q4——24点四则混合运算">
+<meta property="og:url" content="http://www.xuding.info/2012/12/09/post402/index.html">
+<meta property="og:site_name" content="XuDing的音符">
+<meta property="og:description" content="第四季度的题比较有意思，给1~10，选4个数字，要求找到用这4个数进行运算，结果要为24的运算方法，输出，4个数顺序可以调换，可以使用括号，但如果本身运算优先级正确的情况下，不能再加括号。另外，这4个数可能重复。 这次的题很灵活，因为4个数运算结果要为24，不一定只有一种运算啊，可能用很多很多组呢，问了下牛秘，牛秘书说：只要输出一种，如果输出运算方式较简单，那就最好！这样的回答让人比较激动，因为显">
+<meta property="og:updated_time" content="2018-01-06T17:55:37.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编程练习2012Q4——24点四则混合运算">
+<meta name="twitter:description" content="第四季度的题比较有意思，给1~10，选4个数字，要求找到用这4个数进行运算，结果要为24的运算方法，输出，4个数顺序可以调换，可以使用括号，但如果本身运算优先级正确的情况下，不能再加括号。另外，这4个数可能重复。 这次的题很灵活，因为4个数运算结果要为24，不一定只有一种运算啊，可能用很多很多组呢，问了下牛秘，牛秘书说：只要输出一种，如果输出运算方式较简单，那就最好！这样的回答让人比较激动，因为显">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 编程练习2012Q4——24点四则混合运算 - XuDing的音符 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">XuDing的音符</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about-me">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          编程练习2012Q4——24点四则混合运算
+        
+      </h1>
+
+      <time class="post-time">
+          Dec 09 2012
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>第四季度的题比较有意思，给1~10，选4个数字，要求找到用这4个数进行运算，结果要为24的运算方法，输出，4个数顺序可以调换，可以使用括号，但如果本身运算优先级正确的情况下，不能再加括号。另外，这4个数可能重复。</p>
+<p>这次的题很灵活，因为4个数运算结果要为24，不一定只有一种运算啊，可能用很多很多组呢，问了下牛秘，牛秘书说：只要输出一种，如果输出运算方式较简单，那就最好！这样的回答让人比较激动，因为显然无论是题目，还是牛秘，还牛秘背后的神秘出题人，都没有说明什么样的运算方式是最简单的。于是我就默认地随意输出一种了，怎么个随意法，当然是按自己的算法了，找到了就输出、跳出呗！<a id="more"></a></p>
+<p>经计算4个数，总共能有C(4,2)<em>4</em>C(3,2)<em>4</em>C(2,2)*4=1152种运算方法，还是有点多的。但我想来想去，也想不出个数学方法来直接弄出运算方法来，只能使用传说中的“暴力破解”了，这道题有点像在破解密码。。正如上文所述，挨个数、挨个运算，依次来，找到了，就跳出、输出、大功告成！</p>
+<p>带，括号的运算是个问题，如何处理优先级，纠结了10分钟，豁然开朗，优先级那是给别人看的，输出时考虑一下就行了，先算啥，再算啥，暴力是盲目的，暴力是随机的，难道还要看括号行事？多此一举啊~</p>
+<p>即然要暴力，可也要三思而后行，一时间大脑中出现了好几种方案，绕来绕去的。比如可以把4个数摆在那儿，然后在中间依次添加运算符号，再计算。可这实在太复杂了，添加减乘除不麻烦，添加括号可是很头疼啊！添加完了，还要计算，计算这种式子要用二叉树，就4个数的运算，这么整架子太大了。。换一种，我们认为这4个数是个集合，考虑到顺序可以换，那就先取其中一个数，与依次作任意运算，运算的结果再与剩下的数组成新的集合，再重复上述步骤，直到集合中剩下一个数，再检查该数是不是24，接下来你懂的。。。可是我觉得，你也会根我一样，再运算方法的输出上会出点岔子，不好输出啊，这么递归显然要用栈，就算用栈，存什么呢，存数字？还是运算符？怎么存是个问题，存了还要用，还输出，是个相大当的问题啊！于是我纠结了一下，不知怎么又绕到另一个方法上去了。。我转过来一想，这个方法还是甚为复杂，干脆反过来，视24为当前值，取一个数，要与某数作运算，先不运算，而是将24与该数反来运算，例如5+X，这里先用24-5，得19，然后余下三数结果要为19，再视19为一个数值，与刚才的X作计算，复复刚才的步骤。这个方法好理解多了，输出也简单多了，运算是反过来的，输出再正过来，“-”作为“+”，“*”作为“/”就行了，然括号嘛，考虑一下某运算符的下一个运算符就行了，这个好像没有什么简单方法，直到最后，我也没想到好的算法处了括号。</p>
+<p>我满怀希望地写好了程序，把倒子””4,2,6,3””试了一下，结果输出了3<em>6+4+2，好像正确的，看一下给题目给的结果，不一样，心想，果然啊，毕竟运算方法真的可能有很多种啊！不对啊，题目给出的结果是””2</em>6+3*4””，呐呢？不会吧，这，这我程序不就错了嘛！我这方法根本不可能得出这样的结果的，因为我是依次计算的，怎么也覆盖不到两两一组，各自先算完再运算的方法的！唉，真乱折腾啊！没办法，看来还是得用刚才的方法啊！心想，4个数，不管怎么算，不算啥优先级，肯定要算三次，不多不少三次，递归也就递了三次而已，那就不搞栈了，直接弄个长度为三的一维数组吧，一个数组恐怕不够，那就三个数组吧，反正就4个数而已，豁出去了，翻来覆去也就4个数而已！</p>
+<p>这4个数本身使用数组存放，第一步，把第m个数与第n个数运算，例如nums[m]+nums[n]，那就把m，’+’，n分别记录到三个数组中，把计算结果与余下的两个数（顺序不能乱），组成新的集合，计算结果要放在末位，便于处理最后输出嘛！然后再把这三个数重复上一步，最后两个数再作运算，检查一下是不是24，就行了！这样运算方法是找到了，可是保存的数据还不够直观，接下来就是让人神魂颠倒的输出操作了。。。因为保存的是下标，所以要知道某次操作数组各数位数是什么，还要重复一下刚才的部分操作，考虑到就这么几个数，那就不麻烦了，直接处理吧，不搞那么复杂的递归了，if有点多，虽然可读性不乍的，但不见的效率就会差到哪去。</p>
+<p>话说一写日志，果然发现了些问题，完全可以在之前的递归检测时，保存下运算的中间过程，再根据下一次运算符在下一次连接字符串判断是否包上括号，这样找到结果时，运算表达式也形成了，这样就一劳永逸免去了我这种剪不断理还乱的输出处理了！不过我没还是没愿意修改程序，因为这样的中间变量不太好存，只能用字符串数组，也就是递归检测过程中的int数组的字符串版本，不过上一次的运算结果，字符串数组里保存的不是结果，而是运算表达式，这样确实有档次多了，但转过来一想又发现了弊端：这种算法，意味着不管最后计算结果是不是24，都会生成一个运算表达式，题目又没有这个需求，生成表达式中间还要有复杂的加括号处理，4个数最多有1152种计算方法，都生成表达式真的是浪费感情啊！相反，只保存数组下标和运算符就简单多了，虽然有点不登大雅之堂，但节能省电，况且鄙人的输出处理没用递归，还是那句话，翻来覆去就4个数字，也就多几个if else嘛，反正计算就三次，也没多少圈复杂度。</p>
+<p>这两天累坏了，上网都没有时间了，想写个日志也拖了这么久。小房子装修好了，弄个房子不容易啊，跑东跑西的，这就是生活啊~</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2013/02/08/post413/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">不能玩游戏！</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2012/09/09/post349/">
+        <span class="next-text nav-default">练习，第三季</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2018
+    <span class="footer-author">XuDing.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

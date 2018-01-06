@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="神奇的if...else..."/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2014/04/20/post533/"/>
+
+
+<meta name="description" content="if…else…是一个伟大的发明if…else…就像当年的AK47，成本低廉，足够简单，简单到连小孩子都轻易理解；同时if…else…足够强大，就像AK47，一梭子扫过来，打得人抱头鼠窜。if…else…确实很强大，强大到你稍不留意，就能使一段代码被众多的if…else…搞得复杂无比。。。如何正确使用if…else…是门艺术if…else…本质来说是条件控制语句，它可以用来实现强大的流程处理，这一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神奇的if...else...">
+<meta property="og:url" content="http://www.xuding.info/2014/04/20/post533/index.html">
+<meta property="og:site_name" content="XuDing的音符">
+<meta property="og:description" content="if…else…是一个伟大的发明if…else…就像当年的AK47，成本低廉，足够简单，简单到连小孩子都轻易理解；同时if…else…足够强大，就像AK47，一梭子扫过来，打得人抱头鼠窜。if…else…确实很强大，强大到你稍不留意，就能使一段代码被众多的if…else…搞得复杂无比。。。如何正确使用if…else…是门艺术if…else…本质来说是条件控制语句，它可以用来实现强大的流程处理，这一">
+<meta property="og:updated_time" content="2018-01-06T18:39:24.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神奇的if...else...">
+<meta name="twitter:description" content="if…else…是一个伟大的发明if…else…就像当年的AK47，成本低廉，足够简单，简单到连小孩子都轻易理解；同时if…else…足够强大，就像AK47，一梭子扫过来，打得人抱头鼠窜。if…else…确实很强大，强大到你稍不留意，就能使一段代码被众多的if…else…搞得复杂无比。。。如何正确使用if…else…是门艺术if…else…本质来说是条件控制语句，它可以用来实现强大的流程处理，这一">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 神奇的if...else... - XuDing的音符 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">XuDing的音符</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about-me">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          神奇的if...else...
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 20 2014
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>if…else…是一个伟大的发明</p><p>if…else…就像当年的AK47，成本低廉，足够简单，简单到连小孩子都轻易理解；同时if…else…足够强大，就像AK47，一梭子扫过来，打得人抱头鼠窜。if…else…确实很强大，强大到你稍不留意，就能使一段代码被众多的if…else…搞得复杂无比。。。</p><p><strong>如何正确使用if…else…是门艺术</strong></p><p>if…else…本质来说是条件控制语句，它可以用来实现强大的流程处理，这一点无可厚非。然而，很多时候，我们把if…else…作为一种实现技巧，为提高减少代码量，提高所谓的“复用率”，或者说为了使程序更“精练”。</p><a id="more"></a><p>例如，A、B功能模块具有类似的业务流程，但输入数据不同，某一个字段的处理不同，于是聪明的程序员很自然的在A模块的业务方法中增加了一段if…else…，根据传入参数，来控制那个特殊字段的处理。这样实现是正确的，至少在当时的业务需求前提下可以很好的提高编码较率。但这么做的本质，实际上是把不同业务实体之间的条件控制，转移到了业务实体之中，把原本互相独立的模块，紧密地结合在了一起。很明显在我们写这样的自以为很精练、妙不可言的代码时，我们把天天挂在嘴边的“高内聚，低耦合”抛到九霄云外了。。。</p><p>好景不长，第一版华丽的收尾了，第二版接踵而至，第二版增加了C模块，C模块的输入和A、B一致，但逻辑处理和输出与A、B差异较大。需求人员乐呵呵地描述了需求，心想C和A、B其实复杂度差不多，之前做A、B也没遇到什么问题，这次能有什么问题呢？可是实现人员对此愤愤不平：这乍改，谁说复杂度差不多了，C和A、B明显不一样啊？！但他的话很明显是没有说服力的。他无奈地接受了这个纠结的命运——在之前A、B的那个if…else…后面再加了一个else，即使A、B、C真正共同复用的只有if前面那两行代码。。。</p><p>再后来的情况或许大家都猜到了，A、B、C、D……，终于加到了第十个模块，这个时候if…else…已经盘根错节。同一个字段承担了好几个模块场景下的不同业务意义的数据，只因为这些数据都是date类型。。一个整型数据，在一个模块处理中是业务数据，在另一个场景则变成了逻辑控制的一部分。。在无所不能的if…else…里，一切皆有可能，这个时候，程序员以经无法完全按照自己的意愿去改这坨代码了，他们往往按照测试时的运行结果来调整各处代码。。客观的说，此时的代码，已经不按人类的意志来运行了！愚蠢的人类啊，他们一手创造了这一切，确发现他们无法掌控这一切，而当这些自以为是的人类意识到问题的严重性时，结局已经难以挽回了。。</p><p><strong>积极重构，合理使用设计模式破除if…else…</strong></p><p>再回过头来看看，最开始时把A、B模块做如此高的复用，对还是不对呢？当然是正确的，至少在当时是正确的：开发经理眉开眼笑，效率很高啊，来个效率之星表彰一下吧~复用是必需的，只是复用的方法不对而已。两个模块，我们很容易发现其共性，三个或三个以上呢？其实也很简单，设计模式啊~比如大量相似的表单，可以用装饰模式、建造者模式，取表单数据可以和责任链、命令模式等。我们一遍又一遍的学习设计模式，但不少人还是对此不以为意，认为我们平常实现过程没机会用设计模式，导致各种模式看多少遍忘多少遍。其实不需要特意套用某个设计模式，可以借助其思想，我们要用设计模式来实现业务，没有哪个业务是为了某个设计模式而存在的。值得注意的是，没有哪一个设计模式将条件控制语句作为其实现的凭仗。设计模式是为了解耦，而if…else…其实就是一种耦合。</p><p><strong>功能点与功能点估算的准确性</strong></p><p>功能点估算是比较先进的估算方法，功能点估算把各个功能当做互相独立的操作和文件来处理，因此才能达到不同的人作出估算得出相近结果的效果。如果在实现过程中利用功能模块内部的条件控制来实现不同模块的复用，这样肯定会使工作量小于估算，于是功能点估算时引入了“复用程度”的概念。但问题是，“复用程度”还比较好估计，“不复用程度”呢，估算的时候，谁能预测之前的代码会对如今的需求产生什么影响呢？因为这本身就是个笑话，之前代码怎么会影响未来的需求，本末倒置啊。但事实的情况是，它还真影响了，或者说是阻碍了新功能的引入。功能点具有不可控的工期，功能点估算就不准了。在功能模块内部使用if…else…是极不合理的复用方法，等若饮鸩止渴。</p><p>功能点估算法，客观上要求我们不去糅合两个不同模块，这与复用并不矛盾。正确的方法其实很简单，只要注意条件控制语句如果不可必免一定只能加在功能外部，把复用的部分抽取出来即可。引入其他功能时，也要极力避免在已抽取的方法内添加if…else…，随着复用的方法抽取越来越多，我们就会慢慢意识到，这里有点像XX设计模式耶。所以说，好的代码、好的设计、好的架构，都是改出来的。</p><p><strong>总结</strong></p><p>没有人刻意去写烂代码，往往我们嗤之以鼻的烂代码，每一坨都不是天然形成的。一坨烂代码的形成，是日积月累的结果，项目团队人员更迭，甚至是几批、几代程序员共同奋斗的结果。if…else…有一种神奇的魔力，它依靠else if这种神奇的特性，把一坨坨代码串在一起。正如破窗效应，程序员们往往情不自禁地在if…else…后继续添加if…else…。作为优秀的程序员，我们一定要有足够的定力，出淤泥而不染，拒绝if…else…的诱惑。一时爽一下，但终究还是要还的。</p><p>记住，珍惜生命，预防猝死，远离if…else…</p>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2014/07/14/post545/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">为何移动开发在行业软件公司的工资赶不上互联网公司</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2014/04/09/post531/">
+        <span class="next-text nav-default">优秀APP的三个标准[转]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2018
+    <span class="footer-author">XuDing.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

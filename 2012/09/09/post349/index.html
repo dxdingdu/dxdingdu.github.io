@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="练习，第三季"/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2012/09/09/post349/"/>
+
+
+<meta name="description" content="周五发下来第三季的练习题，本来早开始做了，结果周五不想加班，回来了，又一些事耽搁了，结果晚上回来才开始弄，从11点弄到这会儿，终于弄完了，快1点了。。汗。。 这次的题目乍一看是个外部排序，题目说有一个文本文件里存放了50000000个138号段的无重复手机号码，要写个java程序把这些手机号从大到小排序，限制是Java程序使用的最大堆内存为64M，这次似乎没归定时间，难不成时间会特别长？50000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="练习，第三季">
+<meta property="og:url" content="http://www.xuding.info/2012/09/09/post349/index.html">
+<meta property="og:site_name" content="XuDing的音符">
+<meta property="og:description" content="周五发下来第三季的练习题，本来早开始做了，结果周五不想加班，回来了，又一些事耽搁了，结果晚上回来才开始弄，从11点弄到这会儿，终于弄完了，快1点了。。汗。。 这次的题目乍一看是个外部排序，题目说有一个文本文件里存放了50000000个138号段的无重复手机号码，要写个java程序把这些手机号从大到小排序，限制是Java程序使用的最大堆内存为64M，这次似乎没归定时间，难不成时间会特别长？50000">
+<meta property="og:updated_time" content="2018-01-06T17:57:39.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="练习，第三季">
+<meta name="twitter:description" content="周五发下来第三季的练习题，本来早开始做了，结果周五不想加班，回来了，又一些事耽搁了，结果晚上回来才开始弄，从11点弄到这会儿，终于弄完了，快1点了。。汗。。 这次的题目乍一看是个外部排序，题目说有一个文本文件里存放了50000000个138号段的无重复手机号码，要写个java程序把这些手机号从大到小排序，限制是Java程序使用的最大堆内存为64M，这次似乎没归定时间，难不成时间会特别长？50000">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 练习，第三季 - XuDing的音符 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">XuDing的音符</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about-me">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          练习，第三季
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 09 2012
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>周五发下来第三季的练习题，本来早开始做了，结果周五不想加班，回来了，又一些事耽搁了，结果晚上回来才开始弄，从11点弄到这会儿，终于弄完了，快1点了。。汗。。</p>
+<p>这次的题目乍一看是个外部排序，题目说有一个文本文件里存放了50000000个138号段的无重复手机号码，要写个java程序把这些手机号从大到小排序，限制是Java程序使用的最大堆内存为64M，这次似乎没归定时间，难不成时间会特别长？50000000个手机号，读取一下估计也要好长时间，加上当时又是周五，归心似箭啊。。怎么不周一发呢。。于是就先放下了。<a id="more"></a></p>
+<p>结果今天吃完饭回家路上，想起还有这难题没有做，心急如焚，怎么做好呢，我对外部排序一点都不擅长，一堆文件并来并去，也是蛮恐怖的唉。忽然想起师傅说的方法，把电话号按前面几位拆分开来，分成n个文件，排好序，然后再全部组装起来；因为前缀本身也有序嘛，按顺序组装好的文件就整体有序。当时我们都不以为然，说这么拆会好长时间，不应该拆，应该用随机读取，外部排序嘛，感觉应该要遵守前人的理论，这样才能体现出有学问。。回到家，打开在公司的测试代码，发现60M内存用我的快速排序，最多可以一一次排91万多电话号，电话号会是138开头的，取前5位，后6位显然可以组成超过91万条电话号，于是有点担心，算了，先分一下试，据师傅透露，分了10几分钟，才分出来几十兆。。汗。回来我试一下，居然一瞬间结束了，也没报错。。一看代码发现，当时测试时加了个只读取900000条数据的限制，于是去掉限制，一运行，发现110多秒就结束了，看看分开的文件，哈哈，十分准确，从13800到13899，100个文件，每个都差不多59M、60M的样子。找到其中最大的文件，是13827，6365K，打开，发现只有501308行，太好了，那就这样吧~~于是程序改了改，套上排序，套上输出，就完了。。觉得在console里输出一些时间、状态会比较慢，而且内容很多，于是弄了个test.txt文件来输出，程序执行完打开test.txt，发现程序执行一下要300秒左右，290s~310s之间的样子。最另人开心的是输出文件和原文件大小一模一样，真开心^_^，赶快调整一下交了，，唉，好困啊。。</p>
+<p>按这个方法看来，这题似乎不是外部排序了，不知道是不还有更好的方法。话说，我能用5分钟，没准别人能5秒搞定，牛人太多了哦。算了，还是睡觉吧~~有空再膜拜去。。</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2012/12/09/post402/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">编程练习2012Q4——24点四则混合运算</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2012/06/30/post330/">
+        <span class="next-text nav-default">50000的阶乘</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2018
+    <span class="footer-author">XuDing.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

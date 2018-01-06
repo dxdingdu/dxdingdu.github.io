@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="50000的阶乘"/>
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2012/06/30/post330/"/>
+
+
+<meta name="description" content="请了个长假回学校弄毕业，公司发来第二季度的编程习题，这才发现公司原来还有个这么有趣的活动，题目的要求是计算一个数的阶乘，然后将结果的各位数字求和输出。 求阶乘挺简单的，不过题目要求能计算1~50000的阶乘，50000的阶乘难以想象，显然太大了。用java做，因为公司主要用java做开发，这道题规定了不能用BigDecimal啥的，那就自己写大数相乘的吧。。50000的阶乘要求在10分钟以内。。说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="50000的阶乘">
+<meta property="og:url" content="http://www.xuding.info/2012/06/30/post330/index.html">
+<meta property="og:site_name" content="XuDing的音符">
+<meta property="og:description" content="请了个长假回学校弄毕业，公司发来第二季度的编程习题，这才发现公司原来还有个这么有趣的活动，题目的要求是计算一个数的阶乘，然后将结果的各位数字求和输出。 求阶乘挺简单的，不过题目要求能计算1~50000的阶乘，50000的阶乘难以想象，显然太大了。用java做，因为公司主要用java做开发，这道题规定了不能用BigDecimal啥的，那就自己写大数相乘的吧。。50000的阶乘要求在10分钟以内。。说">
+<meta property="og:updated_time" content="2018-01-06T17:49:57.216Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="50000的阶乘">
+<meta name="twitter:description" content="请了个长假回学校弄毕业，公司发来第二季度的编程习题，这才发现公司原来还有个这么有趣的活动，题目的要求是计算一个数的阶乘，然后将结果的各位数字求和输出。 求阶乘挺简单的，不过题目要求能计算1~50000的阶乘，50000的阶乘难以想象，显然太大了。用java做，因为公司主要用java做开发，这道题规定了不能用BigDecimal啥的，那就自己写大数相乘的吧。。50000的阶乘要求在10分钟以内。。说">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 50000的阶乘 - XuDing的音符 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">XuDing的音符</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about-me">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          50000的阶乘
+        
+      </h1>
+
+      <time class="post-time">
+          Jun 30 2012
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>请了个长假回学校弄毕业，公司发来第二季度的编程习题，这才发现公司原来还有个这么有趣的活动，题目的要求是计算一个数的阶乘，然后将结果的各位数字求和输出。</p>
+<p>求阶乘挺简单的，不过题目要求能计算1~50000的阶乘，50000的阶乘难以想象，显然太大了。用java做，因为公司主要用java做开发，这道题规定了不能用BigDecimal啥的，那就自己写大数相乘的吧。。50000的阶乘要求在10分钟以内。。说明确实有点麻烦。<a id="more"></a></p>
+<p>开写，首先先初始化结果数组，用的int[]，多长呢？我估计了一下，50000的阶乘长度肯定小于50000的50000次方的长度，肯定小于100000的50000次方的长度，于是肯定小于250000，于是就初始化了int[250000]数组result，没有办法。。。然后初始化第一个原素为1，然后递归，c语言递归很容易溢出，java递归我还没遇到过，试试看看情况。发现还需要再创建一个临时数组，用于存放一次乘法的结果，于是又加了一个int[250000]的temp数组，因为乘法需要把被乘数各位与乘数求积，然后将结果按位累加，累加的结果保存到临时数组里，然后算完了复制到结果数组，供下次继续计算。</p>
+<p>然后算一算，发现算到3100多的阶乘时，报java.lang.StackOverflowError，汗。。经鉴定，java递归果然也是会栈溢出的。。似乎比c语言递归得多几轮。可是我还意犹未尽，心想把阶乘结果末位0去了看看，于是在复制temp数组到result的过程中，忽略了末位的0，果然结果长度大减少，这下计算到3800多的阶乘时才溢出，说明和c语言一样栈溢出都与递归体占用内存大小有关的。</p>
+<p>改成循环，接着来，算阶乘着实有点麻烦，还没算完50000，我等不及了，心想会不会有什么公式规律什么的快速计算阶乘结果和各位和，记得以前做ACM做过类似的题，于是我尝试在做乘法前先算出被乘数的各位和，再把这个和与乘数相乘，后来我证明了半天，发现这个方法确实不行，只能证明乘数与被乘数先各位求和后再相乘的结果的各位和继续求和，求出的最终的个位数的各位和与原结果的各位和求出的个位数的各位和是相同的，比如9!=362880，结果各位和为27，27的各位和为9，最终求出的个位数的各位和与先算出的各位和是相同的，说得有些拗口，算了，再多嘴一下，其实6!以后，所有结果这么算下去各位和都是9，原因不解释了。。9乘任何数以后的结果这么算各位和都是9….</p>
+<p>尔后又尝试了各种方案，发现都不大好用，于是老实算50000的阶乘，囧啊。然后真算出来了，发现去除末尾的0，结果长度为200738，然后我把长度改为201000。然后很惊讶的发现时间果然是10分钟多一点儿。。看来题目要求不是乱出的。。。然后想办法调一调吧，尝试了一下从大到小算阶乘，发现速度还比不上从小到大的来；然后在去除结果末位0的时候，感觉能不能把结果当中的0去掉，因为最后要算各位和嘛，中间结果里中间的0乘出来还是0嘛。然后又仔细论证了一下，发现不是这样子的，在算结果时会出现损失，因为两数加的进位可能会占用中间结果的0，如果忽略这些0，于是就出错了。。解释得不大清楚，直接地说吧，去除0之后，和之前的情况一样，只有算最终的个位数的各位和才能和不去0结果一样。只算阶乘结果的各位和，必须要把最终的阶乘结果算出来。</p>
+<p>那就接着优化吧，201000长度的数组，复制结果估计特别费时，于是我想了个不需要复制结果的方法，用两个数组，轮流保存结果与临时结果。为了程序显得高级，我用了个2维数组data，初始化int[2][201000]，使data[0][0] = 1，用flag=0标识当前结果数组为data[0][]，也就是data[flag][]，一次计算后切换数组时，只要flag^=1就可以了^_^。我满怀信心地测试这个程序，先用10000试了下，发现还真快了几秒钟，快了10%的样子，可是测试50000时惊讶的发现，速度反而慢了。。。真是让人心寒，又多试了两遍，发现真的变慢了，好囧啊~，当然也有可能是电脑正在执行别的操作的原因，不过这样可以得出一个结论，复制大数组的数据对这个程序时间上影响不大，就是说时间主要还是消耗在了乘法结果累加上，我觉得主要是因为大数组数据存取时的寻址操作占用了大量时间。毕竟每次执行result[i]，JVM都要到内存中找i下标指向的内存空间，写的时候不注意，i很大的话，这个调用还是蛮费时间的。我在优化时将result[i]的调用都尽量减少，争取只读一次、只写一次，不重复读取。如果能像c/c++那样使用指针就好了，这样可以在读取时只寻址一次，然后写数据用指针操作估计能减少不少时间。</p>
+<p>最后很遗憾，程序优化不起来，感觉再优化的话就要使用一些不登大雅之堂的方法了。考虑了一种方法，我们可以事先保存一些阶乘的结果，例如20000!、30000!、35000!、40000!…在计算时，根据要求计算的数大小，选择已有的起始结果，继续做乘法，这样岂不是快了很多。毕竟算阶乘时从1开始做乘法，就默认了1是起始数，我们也可以从2开始（若要求计算1、2，则直接输出），同样，为啥不可以先初始化各种数值范围的起始结果呢？但这样的话，直接把1~50000的阶乘结果全保存下来，直接各要求输出结果岂不是更爽，反正就50000个数而已。。。话说，要是为了速度，就不应该使用面向对象的编程思想，更不该用这种面向对象的语言了，毕竟方法调来调去，意味着要不停地寻址，找call的入口，多麻烦啊~<br>最后附两个代码：</p>
+<p>这个程序算50000时，离10分钟就差10几秒了。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">package com.thunisoft.exercise.y2012q2;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author XuDing</span><br><span class="line"> * @date 2012-06-29</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class FactorialO &#123;</span><br><span class="line"> int LENGTH = 201000; //经鉴定，去末尾0后长度小于这个</span><br><span class="line"> int[] result = new int[LENGTH];</span><br><span class="line"> int[] temp = new int[LENGTH];</span><br><span class="line"> int rLength = 1;  //结果数组实际长度，数组最大下标值+1</span><br><span class="line"> int tLength = 0;  //临时数组实际长度</span><br><span class="line"> long start = new Date().getTime();</span><br><span class="line"> </span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">  FactorialO f = new FactorialO();</span><br><span class="line">  f.init();</span><br><span class="line">  int n = 0;</span><br><span class="line">  try &#123;</span><br><span class="line">   n = Integer.parseInt(args[0]);</span><br><span class="line">  &#125; catch (Exception e) &#123;</span><br><span class="line">   System.out.println(&quot;&quot;参数不正确！&quot;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  f.calc(n);</span><br><span class="line">  f.output();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void output() &#123;</span><br><span class="line">  int num = 0;</span><br><span class="line">  for(int i=0;i&amp;lt;rLength;i++)&#123;</span><br><span class="line">   num+=result[i];</span><br><span class="line">  &#125;</span><br><span class="line">  System.out.println(&quot;&quot;徐丁:&quot;&quot; + (new Date().getTime() - start) + &quot;&quot;:&quot;&quot; + num);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public void init() &#123;</span><br><span class="line">  result[0] = 1;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> private void calc(int n) &#123;</span><br><span class="line">  int m = 2;</span><br><span class="line">  if(m&amp;gt;n||n==1)</span><br><span class="line">   return;</span><br><span class="line">  for (;m&amp;lt;=n;m++) &#123;</span><br><span class="line">   for(int i=0;i&amp;lt;rLength;i++) &#123;</span><br><span class="line">    addToTemp(result[i]*m, i);</span><br><span class="line">   &#125;</span><br><span class="line">   copyTempToResult();</span><br><span class="line">  &#125;</span><br><span class="line">//  while(n&amp;gt;1)&#123;  //实践表明还是正序来得快</span><br><span class="line">//   for(int i=0;i&amp;lt;rLength;i++) &#123;</span><br><span class="line">//    addToTemp(result[i]*n, i);</span><br><span class="line">//   &#125;</span><br><span class="line">//   n--;</span><br><span class="line">//   copyTempToResult();</span><br><span class="line">//  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> private void copyTempToResult() &#123;</span><br><span class="line">  int b = 0;</span><br><span class="line">  int i = 0;</span><br><span class="line">  while(temp[i]==0)&#123;  //去掉后面的0</span><br><span class="line">   i++;</span><br><span class="line">  &#125;</span><br><span class="line">  for(;i&amp;lt;tLength;i++)&#123;</span><br><span class="line">   result[b++] = temp[i];</span><br><span class="line">   temp[i] = 0;</span><br><span class="line">   rLength = b;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void addToTemp(int r, int b) &#123;</span><br><span class="line">  int f = 0;</span><br><span class="line">  do&#123;</span><br><span class="line">   int t = temp[b] + r%10;</span><br><span class="line">   if(t &amp;gt; 9)&#123;</span><br><span class="line">    temp[b+1]+=1;</span><br><span class="line">    t-=10;</span><br><span class="line">    if(r &amp;lt; 10) //此时最高位进位</span><br><span class="line">     f = 1;</span><br><span class="line">   &#125;</span><br><span class="line">   temp[b] = t;</span><br><span class="line">   b++;</span><br><span class="line">  &#125;while((r/=10)!=0);</span><br><span class="line">  tLength = b + f; //最高位有进位，长度须加1</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是不复制临时数组，交替使用数组的程序，稍微短点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">package com.thunisoft.exercise.y2012q2;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author XuDing</span><br><span class="line"> * @date 2012-06-29</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Factorial &#123;</span><br><span class="line"> int LENGTH = 201000; //经鉴定，去末尾0后长度小于这个</span><br><span class="line"> int[][] data = new int[2][LENGTH];</span><br><span class="line"> int flag = 0;</span><br><span class="line"> int rLength = 1;  //结果数组实际长度，数组最大下标值+1</span><br><span class="line"> int tLength = 0;  //临时数组实际长度</span><br><span class="line"> long start = new Date().getTime();</span><br><span class="line"> </span><br><span class="line"> public static void main(String[] args) &#123;</span><br><span class="line">  Factorial f = new Factorial();</span><br><span class="line">  f.init();</span><br><span class="line">  int n = 0;</span><br><span class="line">  try &#123;</span><br><span class="line">   n = Integer.parseInt(args[0]);</span><br><span class="line">  &#125; catch (Exception e) &#123;</span><br><span class="line">   System.out.println(&quot;&quot;参数不正确！&quot;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  f.calc(n);</span><br><span class="line">  f.output();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void output() &#123;</span><br><span class="line">  int num = 0;</span><br><span class="line">  for(int i=0;i&amp;lt;rLength;i++)&#123;</span><br><span class="line">   num+=data[flag][i];</span><br><span class="line">  &#125;</span><br><span class="line">  System.out.println(&quot;&quot;徐丁:&quot;&quot; + (new Date().getTime() - start) + &quot;&quot;:&quot;&quot; + num);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public void init() &#123;</span><br><span class="line">  data[0][0] = 1;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> private void calc(int n) &#123;</span><br><span class="line">  int m = 2;</span><br><span class="line">  if(m&amp;gt;n||n==1)</span><br><span class="line">   return;</span><br><span class="line">  for (;m&amp;lt;=n;m++) &#123;</span><br><span class="line">   int b = 0;  //记录结果起始位</span><br><span class="line">   int i = 0;</span><br><span class="line">   while(i&amp;lt;rLength)&#123;  //去除结尾的0，减小结果长度</span><br><span class="line">    if(data[flag][i]!=0)</span><br><span class="line">     break;</span><br><span class="line">    i++;</span><br><span class="line">   &#125;</span><br><span class="line">   for(;i&amp;lt;rLength;i++) &#123;</span><br><span class="line">    addToTemp(data[flag][i]*m, b++);</span><br><span class="line">    data[flag][i] = 0;  //置为原存储区为0，作为下一轮计算时的临时存储区</span><br><span class="line">   &#125;</span><br><span class="line">   flag^=1;</span><br><span class="line">   rLength = tLength;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void addToTemp(int r, int b) &#123;</span><br><span class="line">  int f = 0;</span><br><span class="line">  do&#123;</span><br><span class="line">   int t = data[flag^1][b] + r%10;</span><br><span class="line">   if(t &amp;gt; 9)&#123;</span><br><span class="line">    data[flag^1][b+1]+=1;</span><br><span class="line">    t-=10;</span><br><span class="line">    if(r &amp;lt; 10) //此时最高位进位</span><br><span class="line">     f = 1;</span><br><span class="line">   &#125;</span><br><span class="line">   data[flag^1][b] = t;</span><br><span class="line">   b++;</span><br><span class="line">  &#125;while((r/=10)!=0);</span><br><span class="line">  tLength = b + f; //最高位有进位，长度须加1</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2012/09/09/post349/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">练习，第三季</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2012/06/03/post323/">
+        <span class="next-text nav-default">培训日志</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2018
+    <span class="footer-author">XuDing.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
