@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="用RxJava优雅的执行并发网络请求"/>
+
+
+
+
+  <meta name="keywords" content="技术," />
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2018/02/14/post602/"/>
+
+
+<meta name="description" content="Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题： 痛在哪？——主线程之殇Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面">
+<meta name="keywords" content="技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用RxJava优雅的执行并发网络请求">
+<meta property="og:url" content="http://www.xuding.info/2018/02/14/post602/index.html">
+<meta property="og:site_name" content="XuDing的音符">
+<meta property="og:description" content="Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题： 痛在哪？——主线程之殇Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面">
+<meta property="og:updated_time" content="2018-02-14T15:42:01.815Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用RxJava优雅的执行并发网络请求">
+<meta name="twitter:description" content="Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题： 痛在哪？——主线程之殇Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> 用RxJava优雅的执行并发网络请求 - XuDing的音符 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">XuDing的音符</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about-me">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用RxJava优雅的执行并发网络请求
+        
+      </h1>
+
+      <time class="post-time">
+          Feb 14 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
+<h1 id="痛在哪？——主线程之殇"><a href="#痛在哪？——主线程之殇" class="headerlink" title="痛在哪？——主线程之殇"></a>痛在哪？——主线程之殇</h1><p>Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面卡黑屏。现在这么搞会乍样大家都知道的，编译时会有警告，运行时会crash。如何优雅地请求网络数据，然后切换到主线程去更新UI，无数志士仁人为了解决这个问题操碎了心，早期官方推荐用AsnycTask，后来出现了经典的httpAsync，后来又有volley，现在又有Retrofit。现在的小程序员们不用在乎这些问题，只要拿来用用就行，大公司也都有自己成熟的网络库。而且现在hybird、react native很流行，不会涉及到主线程的问题。但是如果把14年以前的项目源码翻出来，运气好还能看到handler满天飞的情况，真是恶心死人。<a id="more"></a></p>
+<h1 id="问题——为什么要并发请求"><a href="#问题——为什么要并发请求" class="headerlink" title="问题——为什么要并发请求"></a>问题——为什么要并发请求</h1><p>页面内容太多，难免会需要执行多个请求来展示数据的情况，比如首页，模块多，变化快；再比如审批详情这种页面，需要展示审批本身数据字段，还要展示关联的一些操作流程等等。至于为什么要并发请求，其实不一定并发，只是必须要有一个种手段来管理页面上的网络请求（或是其他一些费时的非主线程操作），为什么要这样呢？因为页面上要弹个进度条对话框呀，网络请求之前显示“加载中，请稍候”，请求结束，把对话框关了，如果只是一个请求，回调里操作一下即可；如果两个请求呢？有些同学咬咬牙，回调里再请求一下网络，然后再回调嵌套一层忍忍就过去了；如果要两个以上呢？谁设计的接口？前端不去找后端拼命才怪。就这么个看似简单的问题，曾经困扰了多少人呀，我估计到现在还困扰着很多人。</p>
+<h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><p>这个问题，我当年曾经写过一个责任链的框架，专门用来解决多个网络请求的问题，其实就是顺次执行所有的网络请求。之所以不并发执行，是因为考虑到有些接口请求数据可能要依赖其他接口，控制起来太复杂，于是一股脑全部顺次执行了。</p>
+<p>后来一个NB的神器出现了，就是RxJava，唉呀我写文章有点啰嗦，说了半天才说到重点了，，Rx是啥不解释了。RxJava可以很好的与Retrofit结合，毕竟是同一家公司的作品嘛。</p>
+<p>解决并发请求的思路就是把网络请求的Observable用Observable.merge合并在一起，正常的Retrofit请求是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">Observable observable = consultApi.getConsultDetail(header(), consultId);</span><br><span class="line">observable.subscribeOn(Schedulers.io())</span><br><span class="line">          .unsubscribeOn(Schedulers.io())</span><br><span class="line">          .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">          .subscribe(new Consumer() &#123;</span><br><span class="line">             @Override</span><br><span class="line">             public void accept(Object o) throws Exception &#123;</span><br><span class="line">                  // 业务处理</span><br><span class="line">             &#125;</span><br><span class="line">          &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>我需要在请求网络前做一些其他操作，另外再弹一个ProgressDialog，于是就是下面这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(RemoteSettingUtils.getRemoteSettingUrl())</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .unsubscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public String apply(@NonNull String s) throws Exception &#123;</span><br><span class="line">                    showProgressDialog();</span><br><span class="line">                    return s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public String apply(@NonNull String s) throws Exception &#123;</span><br><span class="line">                String baseUrl = loadBaseUrlFromCache();</span><br><span class="line">                if (StringUtils.isBlank(baseUrl)) &#123;</span><br><span class="line">                    baseUrl = loadBaseUrl();</span><br><span class="line">                &#125;</span><br><span class="line">                return baseUrl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .flatMap(apiObservableFunction)</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(consumer, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                LogUtils.e(&quot;数据请求出错&quot;, throwable);</span><br><span class="line">                UiUtils.showToast(context, R.string.network_error);</span><br><span class="line">                allComplete.callback(null);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, new Action() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() throws Exception &#123;</span><br><span class="line">                allComplete.callback(null);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这里用到了flatMap，因为项目需要，在请求网络前会检查网络配配置，获取取正式环境的URL，然后重新初始化Retrofit，这里使用flatMap就非常合适了，可以在运行过程中构建observable，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Function&lt;String, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ObservableSource&lt;HttpResponse&gt; apply(String baseUrl) throws Exception &#123;</span><br><span class="line">        ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">        ParamMap param = newParam().addParam(&quot;size&quot;, 10);</span><br><span class="line">        Reply reply = SysUtils.getLast(dataList);</span><br><span class="line">        return consultApi.getReplyList(header(), param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用flatMap的情况下，实现并发请求网络就非常简单了，当然不能简单的Observable.merge，因为不同的请求数据解析是不一样的。此时的flatMap是可以这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">new Function&lt;String, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ObservableSource&lt;HttpResponse&gt; apply(String baseUrl) throws Exception &#123;</span><br><span class="line">        Observable observable1 = consultApi.getConsultDetail()</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(new ResponseFunction() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    protected void consume(HttpResponse response) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        Observable observable2 = consultApi.getReplyList()</span><br><span class="line">                .subscribeOn(Schedulers.newThread())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(new ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    protected void consume(HttpResponse&lt;List&gt; httpResponse) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        return Observable.merge(observable1, observable2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以完美实现并发网络请求了，上面的代码中第二个Observable多了一行subscribeOn(Schedulers.newThread())方法，如果不指定，此时默认还是在上文中的Schedulers.io()里执行，而Schedulers.io()是顺序执行的，如果要真正实现并发，必须要用Schedulers.newThread()。<br>这里可以简单封装一下，flatMap就变成这样了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">new RequestFunction&lt;Object&gt;() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected ObservableSource&lt;HttpResponse&lt;Object&gt;&gt; createRequestObservable() &#123;</span><br><span class="line">        Observable observable1 = addResponseFunction(consultApi.getConsultDetail(), new ResponseFunction&lt;ConsultDetail&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void consume(HttpResponse response) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        Observable observable2 = addResponseFunction(consultApi.getReplyList(), new ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void consume(HttpResponse&lt;List&gt; httpResponse) &#123;</span><br><span class="line">                // UI working</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">        return Observable.merge(observable1, observable2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就清晰得多了，有多少并发处理都不怕了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>并发网络请求其实并不是个强需求，可以通过合理的接口设计或交互设计来避免，实在绕不开嘛可以使用本文的方法。Square真是家很了不起的公司，我看到RxJava后再想想当年写的责任链框架，真是有点剑走偏峰了，我都不好意思说当年还写过那么个东西了。做技术必须要保持开放，切不可坐在井里看天，瞎造轮子。</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/技术/">技术</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/01/09/post601/">
+        <span class="next-text nav-default">好久不写博客了</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2018
+    <span class="footer-author">XuDing.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

@@ -113,6 +113,40 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/02/14/post602/">用RxJava优雅的执行并发网络请求</a>
+        
+      </h1>
+
+      <time class="post-time">
+          Feb 14 2018
+      </time>
+    </header>
+
+
+
+    
+        <div class="post-excerpt">
+            
+            
+              
+            
+
+            
+              <p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
+<h1 id="痛在哪？——主线程之殇"><a href="#痛在哪？——主线程之殇" class="headerlink" title="痛在哪？——主线程之殇"></a>痛在哪？——主线程之殇</h1><p>Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面卡黑屏。现在这么搞会乍样大家都知道的，编译时会有警告，运行时会crash。如何优雅地请求网络数据，然后切换到主线程去更新UI，无数志士仁人为了解决这个问题操碎了心，早期官方推荐用AsnycTask，后来出现了经典的httpAsync，后来又有volley，现在又有Retrofit。现在的小程序员们不用在乎这些问题，只要拿来用用就行，大公司也都有自己成熟的网络库。而且现在hybird、react native很流行，不会涉及到主线程的问题。但是如果把14年以前的项目源码翻出来，运气好还能看到handler满天飞的情况，真是恶心死人。
+        </div>
+            
+          
+
+    
+  </article>
+
+        
+            
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/01/09/post601/">好久不写博客了</a>
         
       </h1>
@@ -409,39 +443,6 @@
   </article>
 
         
-            
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2014/07/14/post545/">为何移动开发在行业软件公司的工资赶不上互联网公司</a>
-        
-      </h1>
-
-      <time class="post-time">
-          Jul 14 2014
-      </time>
-    </header>
-
-
-
-    
-        <div class="post-excerpt">
-            
-            
-              
-            
-
-            
-              <p>鄙人在行业软件公司，做电子政务方面，确切的说是移动政务方面。</p><p>我记得刚毕业时，在小伙伴们中，我的工资是最高的，结果两年过去了，我的工资变成了最低的了，汗死了。。</p><p>为什么会这样，为什么不能那样？这个问题我思考好了很久很久。
-        </div>
-            
-          
-
-    
-  </article>
-
-        
         
   <nav class="pagination">
     
@@ -467,7 +468,7 @@
     
     <section id="tags" class="widget-area widget_tags">
         <h3 class="widget-title">Tags</h3>
-        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/思考/">思考</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吐槽/">吐槽</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/雅文共赏/">雅文共赏</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加班/">加班</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/思考/">思考</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吐槽/">吐槽</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/雅文共赏/">雅文共赏</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/加班/">加班</a><span class="tag-list-count">1</span></li></ul>
     </section>
 
 
