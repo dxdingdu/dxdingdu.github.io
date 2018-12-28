@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="何时可以转型？——Flutter开发实践"/>
+
+
+
+
+  <meta name="keywords" content="Flutter, Android, XuDing的音符" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2018/12/28/post605/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 何时可以转型？——Flutter开发实践 - XuDing的音符 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XuDing的音符</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XuDing的音符</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          何时可以转型？——Flutter开发实践
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-28
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p>Flutter前段时间终于出了1.0，是时候亲手实践一把了。</p>
+<p>实践之前先了解一下前人的智慧，发现一篇文章：</p>
+<blockquote>
+<p>我花了 8 小时，”掌握”了一下 Flutter | Flutter 中文站上线<br><a href="https://www.jianshu.com/p/9aaabc60d8af" target="_blank" rel="noopener">https://www.jianshu.com/p/9aaabc60d8af</a></p>
+</blockquote>
+<p>这文章比较有意思，可能就是Flutter 中文站的人写的，非常有用，当然文章里的写的8小时我感觉快了点儿，捣鼓一遍肯定不够的，搞不好install都要好久。下载完flutter sdk和plugin之后要flutter doctor -v检查开发环境，结论一般都是：Doctor found issues in X categories，会给出相应的tip，一个一个照做就行了，实践发现这些issues不需要全部处理，例只做android的话，ios的 toolchain可以忽略，“Android license status unknown”的提示特别愁人，不过stackoverflow都有解决方法，我一开始兢兢业业地照做了，第二天手残更新了一下android studio，结果“Android license status unknown”的提示又出来了，不过我发现编译打包都没问题，就不管了。<br><a id="more"></a></p>
+<p>Flutter和javascript、react有点像，没有handler了，不需要自己切换线程；Flutter加载图片使用的是graphic memory，不用担心oom的问题，这些优点都挺省心的。Dart和swift语法也特别像，我开玩笑说，不管谁看到Dart都会觉得和某种语言有点像。。面向对象与响应式编程相结合的语言基本都长这样了。</p>
+<p>纯java程序员刚上手可Flutter能会不太适应。Dart的嵌套真不是一般的深，更搞笑的是Flutter插件会帮我们在嵌套的一个个括号后面添加注释：<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/post605_1.png" alt=""><br>这个注释与前面的new配对的，删不掉也无法选中，显然Google也担心我们代码层级太多，看不下去了。不知道这种注释能不能自定义，不美观。</p>
+<p>Flutter里一切都是Widget，以前看到这个描述没啥感觉。写一遍代码就特别容易理解了，果然一切都是，布局、控件就不用说了，连实现padding、margin、居中这些属性都是由一个个Widget来实现的。这么做的好处是逻辑简单，学习上手快，一个概念理解了就能吃遍天，Flutter绘制界面也方便，只需要一次深搜就可以算出控件的位置了；坏处是显然易见的，看上面的层级，我这个是少的，大家开发时看看Flutter Outline里面的Widget树吧，一不小心能嵌套十几层。。我们实际开发时一定要想办法减少Widget层级，比如多提取方法，自己封装widget等。Android自定义View多用继承，Flutter自定义Widget是通过组合多个Widget来实现的。Flutter官方已经提供了许多Widget了，但我估计不久以后，Flutter的各种开发库会爆发式增长，浩如烟海，各公司甚至各项目组都会定义各自的UI库，研发管理需要注意。</p>
+<p>Flutter开发不需要写android的layout了，全部通过代码实现，这意味着业务代码很容易与UI代码混成一坨，Flutter官方说选Dart的原因之一就是在代码规模变大后依然能保持可读性，我对这话不是很理解，可能我没有好好看Dart文档吧。如何把代码写得清晰可读还是值得推敲一下的，我觉得项目组转型Flutter之前一要先定好代码风格，千万不能随便发挥。</p>
+<p>转型Flutter还有个要注意的地方，与原生Android不同，Flutter不可以随意增删控件，Flutter界面是逐帧绘制。Flutter非常重视Widget的状态，如果界面是动态变换的，那么Widget在定义的时候就要知道自己有哪些状态。官方给了个网络请求的例子，发起网络请求之前弹出progress，请求结束后关闭progress显示列表，很简单的功能，官方给的方案是通过全局变量来判断界面状态，如果当前正在请求网络，那么new progessDialog，http请求结束置全局变量，然后setState重绘界面，new ListView：<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/post605_2.png" alt=""><br>这种实现方式真是让人不舒服，我觉得会破坏代码结构，你想假如原来没有显示progress，只做了列表，这个时候测试提个bug说http请求时间太长，一定要加progress，这个时候再改代码真是要改得怀疑人生了。所以一定要做好封装，减少耦合，官法没有提供优雅的实现，那么我们得自己定义一个通用的Widget来切换控件的隐藏和显示。就这么一个简单的功能，想写好都要费一下劲，所以说，开发Flutter项目也不见得有多轻松，一大堆公用Widget等着去实现呢。</p>
+<p>Flutter 1.0正式版出来了，基于Flutter全新开发android app应该问题不大。但是很多愿意转型的项目应该更希望能把Flutter嵌入到原生项目里，官方github已经有example了，clone下来跑起来看了还蛮震惊的，用FlutterView把flutter嵌到android原生界面里，做到了flutter与原生android互交互，浑然天成，简直太完美了！把Flutter添加到原生android流程不复杂，先建个Flutter module，再引入即可。于是忍不住往自己的项目里加，结果发现处处是大坑。首先，要知道绝大多数android项目只要有点规模，依赖包就已经很多了，build.gradle里面有各种配置，完整clean build一遍一分钟内能完成就不错了，这下要再implementation一个flutter，唉真是慢，谁用谁知道。我以前做swift开发吐槽xcode升级前后不兼容，其实android studio也是半斤八两，我昨天手残android studio从3.1.3升级到3.2.1，结果Flutter工程就真的认不出来了，非得升级一下Flutter plugin才好使了。另外，Android、Flutter混合开发最最麻烦的事是，嵌到android界面里的flutter不可以与android一起debug，开发的时候要开两个android studio，各自调各自的，于是果断放手。总得来说，老项目要转型Flutter还是整体重构比较靠谱。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.xuding.info">XuDing</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.xuding.info/2018/12/28/post605/">http://www.xuding.info/2018/12/28/post605/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Flutter/">Flutter</a>
+            
+              <a href="/tags/Android/">Android</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/12/03/post604/">
+        <span class="next-text nav-default">烂代码是怎样炼成的</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dxdingdu@163.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/dxdingdu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">XuDing</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
