@@ -1,1 +1,457 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录生活与工作的点点滴滴"><title>怎样才是全能的程序员？[转] | XuDing的音符</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">怎样才是全能的程序员？[转]</h1><a id="logo" href="/.">XuDing的音符</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">怎样才是全能的程序员？[转]</h1><div class="post-meta">Jun 7, 2013<span> | </span><span class="category"><a href="/categories/往事随风/">往事随风</a></span></div><div class="post-content"><p>期望一个凡人掌握开发过程中各个方面的知识，合理吗？也许不合理，但是Facebook正是要寻找这样的人。在一个OSCON会议上，一名Facebook的工程师告诉我的，他们只聘请“全能（Full stack）”的程序员。那么，全能是什么意思呢？</p><p>对于我，一个全能的程序员应该熟悉每一个层面的技术知识，如果不是全部掌握，也要对所有的软件技术有真正的兴趣。</p><a id="more"></a><p></p><p><strong>熟悉整个技术体系的程序员，可以使得周围的人的生活更加容易。</strong>这就是为什么我反对在工作场合的技术鸿沟。当然，大公司里的政治和沟通的问题往往会影响他们的发展。我想Facebook招聘策略的目的就在于，如果聪明的人身心俱到，一个好的产品可以在更短的时间内发布。</p><h3>技术知识体系的分层：</h3><h4><strong>1. 服务器，网络和主机环境</strong></h4><ol><li>这包括理解什么会宕机，为什么会，没有任何资源是理所当然的。<br></li><li>合理使用文件系统，云存储，网络资源，理解数据冗余和可用性。<br></li><li>在硬件受限的情况下，如何扩展应用。<br></li><li>那么关于多线程和竞争呢？你猜怎么着，你在你的开发机器上看不到，但是在现实中却经常发生。<br></li><li>全能程序员可以与DevOps协同工作。系统应该提供有效的错误信息和日志能力。DevOps会在你之前看到这些信息，使它们有意义。 </li></ol><h4><strong>2. 数据建模</strong></h4><ol><li>如果数据模型存在缺陷，那么业务逻辑和更高的层次将要用奇怪、丑陋的代码来弥补那些模型没有覆盖到的边界场景。<br></li><li>全能程序员知道如何构建合理规范化的关系模型，包括外键、索引、视图、查找表等。<br></li><li>全能程序员熟悉非关系数据存储的概念，理解其比关系型数据存储的优点。 </li></ol><h4><strong>3. 业务逻辑</strong></h4><ol><li>明白应用程序提供的核心商业价值。<br></li><li>需要扎实的面向对象知识。<br></li><li>需要理解框架。 </li></ol><h4><strong>4. API层面/Action层面/MVC</strong></h4><ol><li>理解外部如何与业务逻辑和数据模型进行交互。<br></li><li>框架在这里会用得很多。<br></li><li>全能的程序员有能力写出清晰，一致，简单易用的接口。一些API的复杂得使我感到厌烦。 </li></ol><h4><strong>5. 用户界面</strong></h4><ol><li>全能程序员a)知道如何创建可读的布局，或者b)明白自己需要帮助艺术和图形设计师。无论哪一种，实现好的视觉设计是关键。<br></li><li>掌握HTML5/CSS3。<br></li><li>Javascript在将来会是非常重要的一门语言，很多令人兴奋的作品都是用Javascript完成的。（node, backbone, knockout……） </li></ol><h4><strong>6. 用户体验</strong></h4><ol><li>全能程序员明白，用户只是想让产品可以正常工作。<br></li><li>一个好的系统不会使得用户患上腕管综合征和眼痛病。一个全能程序员会将一个需要8次点击3个步骤的工序，修改为1次点击。<br></li><li>全能程序员会添加有用的错误信息。如果有什么出错了，要向用户道歉。有时程序员漫不经心写的错误信息会让用户觉得很傻。 </li></ol><h4><strong>7. 理解用户和业务的需求</strong></h4><ol><li>现在我们模糊的进行的架构设计，但这会远离了真正的需求。<br></li><li>全能程序员会预先看看当用户在使用软件的时候，会发生什么。同时，他们也会关注业务部分。 </li></ol><h4><strong>其他问题：</strong></h4><ol><li>能够编写质量单元测试。顺便说说，Javascript现在也可以进行单元测试了。<br></li><li>理解持续自动化集成，包括构建应用，测试，编写文档和部署扩展。<br></li><li>安全意识也非常重要，因为每一个层面都会有其易受攻击的地方。 </li></ol><h4><strong>总结：</strong></h4><p>将代码紧紧的绑到一个特定的环境（库，操作系统，硬件等等），是非常糟糕的实践来的。全能程序员理解所有的知识体系，不意味着他们可以走捷径。然而，他们确实会这样做，如果只是建立一个原型的话。</p><p>技术型创业公司需要全能程序员的多才多艺。但是，一个成熟的公司，需要更多的是专注的技术。</p><p>我不确定在你使用多种语言，使用多个平台，甚至为多个行业工作之前，你是否可以自称为全能程序员。全能程序员要在“高级程序员”之上，因为他们与通晓多语言的程序员在同一线上，但是对各个模块的关系更有全局的意识。注意我刚刚的列表，只有3-5项包含了编写代码。</p><p>英文原文：[<a 2012="" href="" http:="" www.laurencegellert.com="" 08="" what-is-a-full-stack-developer="" ""="">What is a Full Stack developer?</a>]</p></div><div class="tags"><a href="/tags/雅文共赏/">雅文共赏</a></div><div class="post-nav"><a class="pre" href="/2013/06/22/post490/">马拉松式的项目</a><a class="next" href="/2013/05/18/post480/">两年</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://www.xuding.info"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/往事随风/">往事随风</a><span class="category-list-count">34</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/思考/" style="font-size: 15px;">思考</a> <a href="/tags/吐槽/" style="font-size: 15px;">吐槽</a> <a href="/tags/雅文共赏/" style="font-size: 15px;">雅文共赏</a> <a href="/tags/加班/" style="font-size: 15px;">加班</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/03/post604/">烂代码是怎样炼成的</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/post603/">从老蒋越级指挥说起</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/14/post602/">用RxJava优雅的执行并发网络请求</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/post601/">好久不写博客了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/post600/">Java字节序列化框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/26/post580/">自掘坟墓的苹果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/post579/">如何精准沟通</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/post578/">技术局限性，任重而道远</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/post577/">心怀畏惧</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/11/post570/">论现代企业中考勤制度的必要性</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">XuDing的音符.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="怎样才是全能的程序员？[转]"/>
+
+
+
+
+  <meta name="keywords" content="雅文共赏, XuDing的音符" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2013/06/07/post489/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 怎样才是全能的程序员？[转] - XuDing的音符 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XuDing的音符</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XuDing的音符</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          怎样才是全能的程序员？[转]
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2013-06-07
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/往事随风/">往事随风</a>
+            
+          </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">&#x6280;&#x672F;&#x77E5;&#x8BC6;&#x4F53;&#x7CFB;&#x7684;&#x5206;&#x5C42;&#xFF1A;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>1. &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x7F51;&#x7EDC;&#x548C;&#x4E3B;&#x673A;&#x73AF;&#x5883;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>2. &#x6570;&#x636E;&#x5EFA;&#x6A21;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>3. &#x4E1A;&#x52A1;&#x903B;&#x8F91;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>4. API&#x5C42;&#x9762;/Action&#x5C42;&#x9762;/MVC</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>5. &#x7528;&#x6237;&#x754C;&#x9762;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>6. &#x7528;&#x6237;&#x4F53;&#x9A8C;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>7. &#x7406;&#x89E3;&#x7528;&#x6237;&#x548C;&#x4E1A;&#x52A1;&#x7684;&#x9700;&#x6C42;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>&#x5176;&#x4ED6;&#x95EE;&#x9898;&#xFF1A;</strong></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text"><strong>&#x603B;&#x7ED3;&#xFF1A;</strong></span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>期望一个凡人掌握开发过程中各个方面的知识，合理吗？也许不合理，但是Facebook正是要寻找这样的人。在一个OSCON会议上，一名Facebook的工程师告诉我的，他们只聘请“全能（Full stack）”的程序员。那么，全能是什么意思呢？</p><p>对于我，一个全能的程序员应该熟悉每一个层面的技术知识，如果不是全部掌握，也要对所有的软件技术有真正的兴趣。</p><a id="more"></a><p></p><p><strong>熟悉整个技术体系的程序员，可以使得周围的人的生活更加容易。</strong>这就是为什么我反对在工作场合的技术鸿沟。当然，大公司里的政治和沟通的问题往往会影响他们的发展。我想Facebook招聘策略的目的就在于，如果聪明的人身心俱到，一个好的产品可以在更短的时间内发布。</p><h3>技术知识体系的分层：</h3><h4><strong>1. 服务器，网络和主机环境</strong></h4><ol><li>这包括理解什么会宕机，为什么会，没有任何资源是理所当然的。<br></li><li>合理使用文件系统，云存储，网络资源，理解数据冗余和可用性。<br></li><li>在硬件受限的情况下，如何扩展应用。<br></li><li>那么关于多线程和竞争呢？你猜怎么着，你在你的开发机器上看不到，但是在现实中却经常发生。<br></li><li>全能程序员可以与DevOps协同工作。系统应该提供有效的错误信息和日志能力。DevOps会在你之前看到这些信息，使它们有意义。 </li></ol><h4><strong>2. 数据建模</strong></h4><ol><li>如果数据模型存在缺陷，那么业务逻辑和更高的层次将要用奇怪、丑陋的代码来弥补那些模型没有覆盖到的边界场景。<br></li><li>全能程序员知道如何构建合理规范化的关系模型，包括外键、索引、视图、查找表等。<br></li><li>全能程序员熟悉非关系数据存储的概念，理解其比关系型数据存储的优点。 </li></ol><h4><strong>3. 业务逻辑</strong></h4><ol><li>明白应用程序提供的核心商业价值。<br></li><li>需要扎实的面向对象知识。<br></li><li>需要理解框架。 </li></ol><h4><strong>4. API层面/Action层面/MVC</strong></h4><ol><li>理解外部如何与业务逻辑和数据模型进行交互。<br></li><li>框架在这里会用得很多。<br></li><li>全能的程序员有能力写出清晰，一致，简单易用的接口。一些API的复杂得使我感到厌烦。 </li></ol><h4><strong>5. 用户界面</strong></h4><ol><li>全能程序员a)知道如何创建可读的布局，或者b)明白自己需要帮助艺术和图形设计师。无论哪一种，实现好的视觉设计是关键。<br></li><li>掌握HTML5/CSS3。<br></li><li>Javascript在将来会是非常重要的一门语言，很多令人兴奋的作品都是用Javascript完成的。（node, backbone, knockout……） </li></ol><h4><strong>6. 用户体验</strong></h4><ol><li>全能程序员明白，用户只是想让产品可以正常工作。<br></li><li>一个好的系统不会使得用户患上腕管综合征和眼痛病。一个全能程序员会将一个需要8次点击3个步骤的工序，修改为1次点击。<br></li><li>全能程序员会添加有用的错误信息。如果有什么出错了，要向用户道歉。有时程序员漫不经心写的错误信息会让用户觉得很傻。 </li></ol><h4><strong>7. 理解用户和业务的需求</strong></h4><ol><li>现在我们模糊的进行的架构设计，但这会远离了真正的需求。<br></li><li>全能程序员会预先看看当用户在使用软件的时候，会发生什么。同时，他们也会关注业务部分。 </li></ol><h4><strong>其他问题：</strong></h4><ol><li>能够编写质量单元测试。顺便说说，Javascript现在也可以进行单元测试了。<br></li><li>理解持续自动化集成，包括构建应用，测试，编写文档和部署扩展。<br></li><li>安全意识也非常重要，因为每一个层面都会有其易受攻击的地方。 </li></ol><h4><strong>总结：</strong></h4><p>将代码紧紧的绑到一个特定的环境（库，操作系统，硬件等等），是非常糟糕的实践来的。全能程序员理解所有的知识体系，不意味着他们可以走捷径。然而，他们确实会这样做，如果只是建立一个原型的话。</p><p>技术型创业公司需要全能程序员的多才多艺。但是，一个成熟的公司，需要更多的是专注的技术。</p><p>我不确定在你使用多种语言，使用多个平台，甚至为多个行业工作之前，你是否可以自称为全能程序员。全能程序员要在“高级程序员”之上，因为他们与通晓多语言的程序员在同一线上，但是对各个模块的关系更有全局的意识。注意我刚刚的列表，只有3-5项包含了编写代码。</p><p>英文原文：[<a 2012="" href="" http:="" www.laurencegellert.com="" 08="" what-is-a-full-stack-developer="" ""="">What is a Full Stack developer?</a>]</p>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.xuding.info">XuDing</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.xuding.info/2013/06/07/post489/">http://www.xuding.info/2013/06/07/post489/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/雅文共赏/">雅文共赏</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2013/06/22/post490/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">马拉松式的项目</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2013/05/18/post480/">
+        <span class="next-text nav-default">两年</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dxdingdu@163.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/dxdingdu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">XuDing</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

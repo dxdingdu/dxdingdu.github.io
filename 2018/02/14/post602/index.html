@@ -1,13 +1,463 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录生活与工作的点点滴滴"><title>用RxJava优雅的执行并发网络请求 | XuDing的音符</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">用RxJava优雅的执行并发网络请求</h1><a id="logo" href="/.">XuDing的音符</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">用RxJava优雅的执行并发网络请求</h1><div class="post-meta">Feb 14, 2018</div><div class="post-content"><p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="用RxJava优雅的执行并发网络请求"/>
+
+
+
+
+  <meta name="keywords" content="技术, XuDing的音符" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2018/02/14/post602/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 用RxJava优雅的执行并发网络请求 - XuDing的音符 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XuDing的音符</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XuDing的音符</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用RxJava优雅的执行并发网络请求
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-14
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#痛在哪？——主线程之殇"><span class="toc-text"><a href="#&#x75DB;&#x5728;&#x54EA;&#xFF1F;&#x2014;&#x2014;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E4B;&#x6B87;" class="headerlink" title="&#x75DB;&#x5728;&#x54EA;&#xFF1F;&#x2014;&#x2014;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E4B;&#x6B87;"></a>&#x75DB;&#x5728;&#x54EA;&#xFF1F;&#x2014;&#x2014;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E4B;&#x6B87;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题——为什么要并发请求"><span class="toc-text"><a href="#&#x95EE;&#x9898;&#x2014;&#x2014;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;" class="headerlink" title="&#x95EE;&#x9898;&#x2014;&#x2014;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;"></a>&#x95EE;&#x9898;&#x2014;&#x2014;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5E76;&#x53D1;&#x8BF7;&#x6C42;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何解决"><span class="toc-text"><a href="#&#x5982;&#x4F55;&#x89E3;&#x51B3;" class="headerlink" title="&#x5982;&#x4F55;&#x89E3;&#x51B3;"></a>&#x5982;&#x4F55;&#x89E3;&#x51B3;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
 <h1 id="痛在哪？——主线程之殇"><a href="#痛在哪？——主线程之殇" class="headerlink" title="痛在哪？——主线程之殇"></a>痛在哪？——主线程之殇</h1><p>Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面卡黑屏。现在这么搞会乍样大家都知道的，编译时会有警告，运行时会crash。如何优雅地请求网络数据，然后切换到主线程去更新UI，无数志士仁人为了解决这个问题操碎了心，早期官方推荐用AsnycTask，后来出现了经典的httpAsync，后来又有volley，现在又有Retrofit。现在的小程序员们不用在乎这些问题，只要拿来用用就行，大公司也都有自己成熟的网络库。而且现在hybird、react native很流行，不会涉及到主线程的问题。但是如果把14年以前的项目源码翻出来，运气好还能看到handler满天飞的情况，真是恶心死人。<a id="more"></a></p>
 <h1 id="问题——为什么要并发请求"><a href="#问题——为什么要并发请求" class="headerlink" title="问题——为什么要并发请求"></a>问题——为什么要并发请求</h1><p>页面内容太多，难免会需要执行多个请求来展示数据的情况，比如首页，模块多，变化快；再比如审批详情这种页面，需要展示审批本身数据字段，还要展示关联的一些操作流程等等。至于为什么要并发请求，其实不一定并发，只是必须要有一个种手段来管理页面上的网络请求（或是其他一些费时的非主线程操作），为什么要这样呢？因为页面上要弹个进度条对话框呀，网络请求之前显示“加载中，请稍候”，请求结束，把对话框关了，如果只是一个请求，回调里操作一下即可；如果两个请求呢？有些同学咬咬牙，回调里再请求一下网络，然后再回调嵌套一层忍忍就过去了；如果要两个以上呢？谁设计的接口？前端不去找后端拼命才怪。就这么个看似简单的问题，曾经困扰了多少人呀，我估计到现在还困扰着很多人。</p>
 <h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><p>这个问题，我当年曾经写过一个责任链的框架，专门用来解决多个网络请求的问题，其实就是顺次执行所有的网络请求。之所以不并发执行，是因为考虑到有些接口请求数据可能要依赖其他接口，控制起来太复杂，于是一股脑全部顺次执行了。</p>
 <p>后来一个NB的神器出现了，就是RxJava，唉呀我写文章有点啰嗦，说了半天才说到重点了，，Rx是啥不解释了。RxJava可以很好的与Retrofit结合，毕竟是同一家公司的作品嘛。</p>
-<p>解决并发请求的思路就是把网络请求的Observable用Observable.merge合并在一起，正常的Retrofit请求是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">Observable observable = consultApi.getConsultDetail(header(), consultId);</span><br><span class="line">observable.subscribeOn(Schedulers.io())</span><br><span class="line">          .unsubscribeOn(Schedulers.io())</span><br><span class="line">          .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">          .subscribe(new Consumer() &#123;</span><br><span class="line">             @Override</span><br><span class="line">             public void accept(Object o) throws Exception &#123;</span><br><span class="line">                  // 业务处理</span><br><span class="line">             &#125;</span><br><span class="line">          &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>我需要在请求网络前做一些其他操作，另外再弹一个ProgressDialog，于是就是下面这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(RemoteSettingUtils.getRemoteSettingUrl())</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .unsubscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public String apply(@NonNull String s) throws Exception &#123;</span><br><span class="line">                    showProgressDialog();</span><br><span class="line">                    return s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .map(new Function&lt;String, String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public String apply(@NonNull String s) throws Exception &#123;</span><br><span class="line">                String baseUrl = loadBaseUrlFromCache();</span><br><span class="line">                if (StringUtils.isBlank(baseUrl)) &#123;</span><br><span class="line">                    baseUrl = loadBaseUrl();</span><br><span class="line">                &#125;</span><br><span class="line">                return baseUrl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .flatMap(apiObservableFunction)</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(consumer, new Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                LogUtils.e(&quot;数据请求出错&quot;, throwable);</span><br><span class="line">                UiUtils.showToast(context, R.string.network_error);</span><br><span class="line">                allComplete.callback(null);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, new Action() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() throws Exception &#123;</span><br><span class="line">                allComplete.callback(null);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>这里用到了flatMap，因为项目需要，在请求网络前会检查网络配配置，获取取正式环境的URL，然后重新初始化Retrofit，这里使用flatMap就非常合适了，可以在运行过程中构建observable，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Function&lt;String, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ObservableSource&lt;HttpResponse&gt; apply(String baseUrl) throws Exception &#123;</span><br><span class="line">        ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">        ParamMap param = newParam().addParam(&quot;size&quot;, 10);</span><br><span class="line">        Reply reply = SysUtils.getLast(dataList);</span><br><span class="line">        return consultApi.getReplyList(header(), param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用flatMap的情况下，实现并发请求网络就非常简单了，当然不能简单的Observable.merge，因为不同的请求数据解析是不一样的。此时的flatMap是可以这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">new Function&lt;String, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ObservableSource&lt;HttpResponse&gt; apply(String baseUrl) throws Exception &#123;</span><br><span class="line">        Observable observable1 = consultApi.getConsultDetail()</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(new ResponseFunction() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    protected void consume(HttpResponse response) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        Observable observable2 = consultApi.getReplyList()</span><br><span class="line">                .subscribeOn(Schedulers.newThread())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(new ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    protected void consume(HttpResponse&lt;List&gt; httpResponse) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        return Observable.merge(observable1, observable2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样就可以完美实现并发网络请求了，上面的代码中第二个Observable多了一行subscribeOn(Schedulers.newThread())方法，如果不指定，此时默认还是在上文中的Schedulers.io()里执行，而Schedulers.io()是顺序执行的，如果要真正实现并发，必须要用Schedulers.newThread()。<br>这里可以简单封装一下，flatMap就变成这样了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">new RequestFunction&lt;Object&gt;() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected ObservableSource&lt;HttpResponse&lt;Object&gt;&gt; createRequestObservable() &#123;</span><br><span class="line">        Observable observable1 = addResponseFunction(consultApi.getConsultDetail(), new ResponseFunction&lt;ConsultDetail&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void consume(HttpResponse response) &#123;</span><br><span class="line">                        // UI working</span><br><span class="line">                    &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        Observable observable2 = addResponseFunction(consultApi.getReplyList(), new ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void consume(HttpResponse&lt;List&gt; httpResponse) &#123;</span><br><span class="line">                // UI working</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">        return Observable.merge(observable1, observable2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决并发请求的思路就是把网络请求的Observable用Observable.merge合并在一起，正常的Retrofit请求是这样的：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">Observable observable = consultApi.getConsultDetail(header(), consultId);</span><br><span class="line">observable.subscribeOn(Schedulers.io())</span><br><span class="line">          .unsubscribeOn(Schedulers.io())</span><br><span class="line">          .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">          .subscribe(<span class="keyword">new</span> Consumer() &#123;</span><br><span class="line">             <span class="meta">@Override</span></span><br><span class="line">             <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Object o)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                  <span class="comment">// 业务处理</span></span><br><span class="line">             &#125;</span><br><span class="line">          &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>我需要在请求网络前做一些其他操作，另外再弹一个ProgressDialog，于是就是下面这样的：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(RemoteSettingUtils.getRemoteSettingUrl())</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .unsubscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .map(<span class="keyword">new</span> <span class="built_in">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="built_in">String</span> apply(<span class="meta">@NonNull</span> <span class="built_in">String</span> s) throws Exception &#123;</span><br><span class="line">                    showProgressDialog();</span><br><span class="line">                    <span class="keyword">return</span> s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .map(<span class="keyword">new</span> <span class="built_in">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">String</span> apply(<span class="meta">@NonNull</span> <span class="built_in">String</span> s) throws Exception &#123;</span><br><span class="line">                <span class="built_in">String</span> baseUrl = loadBaseUrlFromCache();</span><br><span class="line">                <span class="keyword">if</span> (StringUtils.isBlank(baseUrl)) &#123;</span><br><span class="line">                    baseUrl = loadBaseUrl();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> baseUrl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .observeOn(Schedulers.io())</span><br><span class="line">        .flatMap(apiObservableFunction)</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(consumer, <span class="keyword">new</span> Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">void</span> accept(Throwable throwable) throws Exception &#123;</span><br><span class="line">                LogUtils.e(<span class="string">"数据请求出错"</span>, throwable);</span><br><span class="line">                UiUtils.showToast(context, R.string.network_error);</span><br><span class="line">                allComplete.callback(<span class="literal">null</span>);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="keyword">new</span> Action() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="built_in">void</span> run() throws Exception &#123;</span><br><span class="line">                allComplete.callback(<span class="literal">null</span>);</span><br><span class="line">                progressDialog.cancel();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这里用到了flatMap，因为项目需要，在请求网络前会检查网络配配置，获取取正式环境的URL，然后重新初始化Retrofit，这里使用flatMap就非常合适了，可以在运行过程中构建observable，例如：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="type">Function</span>&lt;<span class="keyword">String</span>, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">public</span> ObservableSource&lt;HttpResponse&gt; apply(<span class="keyword">String</span> baseUrl) throws Exception &#123;</span><br><span class="line">        ConsultApi consultApi = RetrofitUtils.createApi(ConsultApi.class);</span><br><span class="line">        ParamMap param = <span class="keyword">new</span><span class="type">Param</span>().addParam(<span class="string">"size"</span>, <span class="number">10</span>);</span><br><span class="line">        Reply reply = SysUtils.getLast(dataList);</span><br><span class="line">        <span class="keyword">return</span> consultApi.getReplyList(header(), param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用flatMap的情况下，实现并发请求网络就非常简单了，当然不能简单的Observable.merge，因为不同的请求数据解析是不一样的。此时的flatMap是可以这么写：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Function&lt;String, ObservableSource&lt;HttpResponse&gt;&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ObservableSource&lt;HttpResponse&gt; apply(String baseUrl) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Observable observable1 = consultApi.getConsultDetail()</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(<span class="keyword">new</span> ResponseFunction() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">consume</span><span class="params">(HttpResponse response)</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// UI working</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        Observable observable2 = consultApi.getReplyList()</span><br><span class="line">                .subscribeOn(Schedulers.newThread())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .map(<span class="keyword">new</span> ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">consume</span><span class="params">(HttpResponse&lt;List&gt; httpResponse)</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// UI working</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="function"><span class="keyword">return</span> Observable.<span class="title">merge</span><span class="params">(observable1, observable2)</span></span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以完美实现并发网络请求了，上面的代码中第二个Observable多了一行subscribeOn(Schedulers.newThread())方法，如果不指定，此时默认还是在上文中的Schedulers.io()里执行，而Schedulers.io()是顺序执行的，如果要真正实现并发，必须要用Schedulers.newThread()。<br>这里可以简单封装一下，flatMap就变成这样了：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> RequestFunction&lt;Object&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> ObservableSource&lt;HttpResponse&lt;Object&gt;&gt; createRequestObservable() &#123;</span><br><span class="line">        Observable observable1 = addResponseFunction(consultApi.getConsultDetail(), <span class="keyword">new</span> ResponseFunction&lt;ConsultDetail&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">consume</span><span class="params">(HttpResponse response)</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// UI working</span></span><br><span class="line">                    &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        Observable observable2 = addResponseFunction(consultApi.getReplyList(), <span class="keyword">new</span> ResponseFunction&lt;List&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">consume</span><span class="params">(HttpResponse&lt;List&gt; httpResponse)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// UI working</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="keyword">true</span>);</span><br><span class="line">        <span class="function"><span class="keyword">return</span> Observable.<span class="title">merge</span><span class="params">(observable1, observable2)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样就清晰得多了，有多少并发处理都不怕了。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>并发网络请求其实并不是个强需求，可以通过合理的接口设计或交互设计来避免，实在绕不开嘛可以使用本文的方法。Square真是家很了不起的公司，我看到RxJava后再想想当年写的责任链框架，真是有点剑走偏峰了，我都不好意思说当年还写过那么个东西了。做技术必须要保持开放，切不可坐在井里看天，瞎造轮子。</p>
-</div><div class="tags"><a href="/tags/技术/">技术</a></div><div class="post-nav"><a class="pre" href="/2018/03/28/post603/">从老蒋越级指挥说起</a><a class="next" href="/2018/01/09/post601/">好久不写博客了</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://www.xuding.info"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/往事随风/">往事随风</a><span class="category-list-count">34</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/技术/" style="font-size: 15px;">技术</a> <a href="/tags/思考/" style="font-size: 15px;">思考</a> <a href="/tags/吐槽/" style="font-size: 15px;">吐槽</a> <a href="/tags/雅文共赏/" style="font-size: 15px;">雅文共赏</a> <a href="/tags/加班/" style="font-size: 15px;">加班</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/03/post604/">烂代码是怎样炼成的</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/post603/">从老蒋越级指挥说起</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/14/post602/">用RxJava优雅的执行并发网络请求</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/post601/">好久不写博客了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/post600/">Java字节序列化框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/26/post580/">自掘坟墓的苹果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/post579/">如何精准沟通</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/post578/">技术局限性，任重而道远</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/post577/">心怀畏惧</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/11/post570/">论现代企业中考勤制度的必要性</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">XuDing的音符.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.xuding.info">XuDing</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.xuding.info/2018/02/14/post602/">http://www.xuding.info/2018/02/14/post602/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/技术/">技术</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/28/post603/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">从老蒋越级指挥说起</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/09/post601/">
+        <span class="next-text nav-default">好久不写博客了</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dxdingdu@163.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/dxdingdu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">XuDing</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
