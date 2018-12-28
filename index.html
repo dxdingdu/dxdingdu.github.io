@@ -109,7 +109,7 @@
         <li class="mobile-menu-item">
           
           
-            Home
+            首页
           
         </li>
       </a>
@@ -118,7 +118,7 @@
         <li class="mobile-menu-item">
           
           
-            Archives
+            归档
           
         </li>
       </a>
@@ -127,7 +127,7 @@
         <li class="mobile-menu-item">
           
           
-            About
+            关于
           
         </li>
       </a>
@@ -148,7 +148,7 @@
           <a class="menu-item-link" href="/">
             
             
-              Home
+              首页
             
           </a>
         </li>
@@ -157,7 +157,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              Archives
+              归档
             
           </a>
         </li>
@@ -166,7 +166,7 @@
           <a class="menu-item-link" href="/about">
             
             
-              About
+              关于
             
           </a>
         </li>
@@ -222,7 +222,7 @@
 </blockquote>
 <p>这文章比较有意思，可能就是Flutter 中文站的人写的，非常有用，当然文章里的写的8小时我感觉快了点儿，捣鼓一遍肯定不够的，搞不好install都要好久。下载完flutter sdk和plugin之后要flutter doctor -v检查开发环境，结论一般都是：Doctor found issues in X categories，会给出相应的tip，一个一个照做就行了，实践发现这些issues不需要全部处理，例只做android的话，ios的 toolchain可以忽略，“Android license status unknown”的提示特别愁人，不过stackoverflow都有解决方法，我一开始兢兢业业地照做了，第二天手残更新了一下android studio，结果“Android license status unknown”的提示又出来了，不过我发现编译打包都没问题，就不管了。<br>
           <div class="read-more">
-            <a href="/2018/12/28/post605/" class="read-more-link">Read more..</a>
+            <a href="/2018/12/28/post605/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -267,7 +267,7 @@
         
           <p>这两天接手一个离职员工的项目，改bug，个中不爽，难以启齿，有些代码写得实在是让人哭笑不得，不一一列举，摘一段集烂代码之大成的典型案例：<br>
           <div class="read-more">
-            <a href="/2018/12/03/post604/" class="read-more-link">Read more..</a>
+            <a href="/2018/12/03/post604/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -314,7 +314,7 @@
 <p>有人说蒋介石越级指挥是他玩谋弄权的体现：各个司令都是我老蒋重金养起来的，你要听我的，你手下的兵也都是我的，我让你当司令你才当司令的，你不能拥兵自重。有人说蒋介石越级指挥是因为他过于自负，总认为自己是当世张良，能定胜负于千里之外，他认为前线将领能力太差，于是忍不住上线微操一把，过个当指挥官的瘾。当然要我说嘛，蒋介石也许就是为了防止各个统兵大员尾大不掉，毕竟就算他再怎么瞎指挥、再怎么失败，他至少牢牢把握着党国的中央大权呀，还是有本事的。</p>
 <p>不说老蒋了，就说我们自己的事，我们一线程序员，分明就是老蒋手下的兵，那些市场、销售、客服部老蒋们天天把电话往我们前线打，小兵们眼花缭乱，不知所措。如果不做好需求管理，项目能一两个版本保持健康就不错了，往后就直奔着失控去了。
           <div class="read-more">
-            <a href="/2018/03/28/post603/" class="read-more-link">Read more..</a>
+            <a href="/2018/03/28/post603/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -360,7 +360,7 @@
           <p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
 <h1 id="痛在哪？——主线程之殇"><a href="#痛在哪？——主线程之殇" class="headerlink" title="痛在哪？——主线程之殇"></a>痛在哪？——主线程之殇</h1><p>Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面卡黑屏。现在这么搞会乍样大家都知道的，编译时会有警告，运行时会crash。如何优雅地请求网络数据，然后切换到主线程去更新UI，无数志士仁人为了解决这个问题操碎了心，早期官方推荐用AsnycTask，后来出现了经典的httpAsync，后来又有volley，现在又有Retrofit。现在的小程序员们不用在乎这些问题，只要拿来用用就行，大公司也都有自己成熟的网络库。而且现在hybird、react native很流行，不会涉及到主线程的问题。但是如果把14年以前的项目源码翻出来，运气好还能看到handler满天飞的情况，真是恶心死人。
           <div class="read-more">
-            <a href="/2018/02/14/post602/" class="read-more-link">Read more..</a>
+            <a href="/2018/02/14/post602/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -405,7 +405,7 @@
         
           <p>真的是好久好久不写博客了，主要是懒。。之前一直使用wordpress，可是国内好难找到好用的wordpress空间。之前一度以为daocloud.io是我的福音，我曾好长一段时间把博客放在daocloud上，可好用了，我也是那时候体会到了docker的强大。后来daocloud果然被监管了，我的博客被停了，于是这一年多来我的域名就被打入冷宫了。。当时数据都没来得及备份，真是遗憾。
           <div class="read-more">
-            <a href="/2018/01/09/post601/" class="read-more-link">Read more..</a>
+            <a href="/2018/01/09/post601/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -450,7 +450,7 @@
         
           <p>工作中需要在Android平台与嵌入式设备通信，互联网环境中数据交互一般采用json格式，解析比较容易。嵌入式设备间通信常常采用字节流传输，通信过程中需要逐个字节、甚至逐个位去读取，非常麻烦。<br>Java语言与字节编码互相转换的框架实际上是有的，比如说Javolution，可以把C语言的结构体转换为Java类，但是国内用户很少，文档稀少，转换某些结构有bug，难以解决，于是打算自己写一个字节序列化框架。<br>
           <div class="read-more">
-            <a href="/2017/12/21/post600/" class="read-more-link">Read more..</a>
+            <a href="/2017/12/21/post600/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -502,7 +502,7 @@
           <p>最近被appstore搞的焦头烂额，虽然早有心里准备，但还是让我捉襟见肘，苦不堪言。</p>
 <p>我是最近刚刚接手ios开发的，从实验室小伙伴那儿“过继”过来的项目。这之前一直做android开发，ios接触得少，iphone毕竟还是价格相对高一些嘛，印象很好。可是经过这么几个月的深刻接触，我对苹果产品的好感就荡然无存了。苹果产品也许还能继续保持高价一段时间，但苹果的研发体系实在是混乱。<br>
           <div class="read-more">
-            <a href="/2016/10/26/post580/" class="read-more-link">Read more..</a>
+            <a href="/2016/10/26/post580/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -554,7 +554,7 @@
           <p>很多程序员不善于沟通，尤其当他全身心投入工作后，这会带来很多问题，因为除了自己给自己做软件，很少有项目是一个人能完成的，软件研发不仅仅是程序员的事，需求、设计、进度、风险，还有用户，各方面都需要沟通。</p>
 <p>软件研发过程中的沟通和我们日常的语言交流有所区别，日常交流可以通过表情、手势、动作来辅助沟，传达特殊含义，表达语言所难以描述的信息。软件研发过程中，程序员常常是面对着屏幕，一边看着代码一边与别人沟通，这时候的沟通尤其需要精准，所以很多程序员之间互相沟通时喜欢直接讲代码，否则脱离了代码，就说不清楚他在干嘛，也难听懂别人要他干嘛，行外人觉得这就是程序员的特点，这是个悲剧，程序员不应该这样的。<br>
           <div class="read-more">
-            <a href="/2016/08/01/post579/" class="read-more-link">Read more..</a>
+            <a href="/2016/08/01/post579/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -606,7 +606,7 @@
           <p>前两天一个同事悄悄跟我说，他说证券公司的人告诉他，7月份行情会很不错，可以炒一炒，他很疑惑：股票可以预测吗？券商说得这么一本正经，他们凭什么这么说，会不会骗人的？</p>
 <p>我一听乐了，这个问题对于常年炒股的人来说其实算不上问题。我没炒股前我也会怀疑，有炒股经历后，我可以很坚定的说，确实能预测，关键是——预测准不准的问题。。。<br>
           <div class="read-more">
-            <a href="/2016/07/11/post578/" class="read-more-link">Read more..</a>
+            <a href="/2016/07/11/post578/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -658,7 +658,7 @@
           <p>今天头疼，请假在家休息。额，是身体上的头疼，不是精神上的头疼。。可能是因为前段时间加班多了点吧</p>
 <p>印象中以前也有一次像这样，特别头疼的，那是很久很久以前，long long ago，2012年，那时候似乎是年底，项目工期紧张，连续加班两个月。我记得那时候有个新闻，说搜狐有个程序员，连续加班一个月，猝死在工位上，当时报导说那个程序员连日加班，工位上有好多红牛的瓶罐，空罐子都堆成了小山。。我记得当时和小伙伴们都很不以为然，他才一个月算什么呀，我们这都两个月了呢！结果没过几天，我的头忽然就疼起来了，好吓人。<br>
           <div class="read-more">
-            <a href="/2016/03/11/post577/" class="read-more-link">Read more..</a>
+            <a href="/2016/03/11/post577/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -676,7 +676,7 @@
     
     
       <a class="next" href="/page/2/">
-        <span class="next-text">Next</span>
+        <span class="next-text">下一页</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -738,11 +738,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
