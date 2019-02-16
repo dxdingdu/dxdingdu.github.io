@@ -111,7 +111,7 @@
         <li class="mobile-menu-item">
           
           
-            首页
+            Home
           
         </li>
       </a>
@@ -120,7 +120,7 @@
         <li class="mobile-menu-item">
           
           
-            归档
+            Archives
           
         </li>
       </a>
@@ -129,7 +129,7 @@
         <li class="mobile-menu-item">
           
           
-            关于
+            About
           
         </li>
       </a>
@@ -150,7 +150,7 @@
           <a class="menu-item-link" href="/">
             
             
-              首页
+              Home
             
           </a>
         </li>
@@ -159,7 +159,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              归档
+              Archives
             
           </a>
         </li>
@@ -168,7 +168,7 @@
           <a class="menu-item-link" href="/about">
             
             
-              关于
+              About
             
           </a>
         </li>
@@ -204,7 +204,7 @@
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
+    <h2 class="post-toc-title">Contents</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE简述"><span class="toc-text"><a href="#BLE&#x7B80;&#x8FF0;" class="headerlink" title="BLE&#x7B80;&#x8FF0;"></a>BLE&#x7B80;&#x8FF0;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE开发注意点"><span class="toc-text"><a href="#BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;" class="headerlink" title="BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;"></a>BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号干扰"><span class="toc-text"><a href="#&#x4FE1;&#x53F7;&#x5E72;&#x6270;" class="headerlink" title="&#x4FE1;&#x53F7;&#x5E72;&#x6270;"></a>&#x4FE1;&#x53F7;&#x5E72;&#x6270;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙初始化崩溃"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;" class="headerlink" title="&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;"></a>&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接间隔"><span class="toc-text"><a href="#&#x8FDE;&#x63A5;&#x95F4;&#x9694;" class="headerlink" title="&#x8FDE;&#x63A5;&#x95F4;&#x9694;"></a>&#x8FDE;&#x63A5;&#x95F4;&#x9694;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLE与GPS"><span class="toc-text"><a href="#BLE&#x4E0E;GPS" class="headerlink" title="BLE&#x4E0E;GPS"></a>BLE&#x4E0E;GPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配对问题"><span class="toc-text"><a href="#&#x914D;&#x5BF9;&#x95EE;&#x9898;" class="headerlink" title="&#x914D;&#x5BF9;&#x95EE;&#x9898;"></a>&#x914D;&#x5BF9;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙开关问题"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;" class="headerlink" title="&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;"></a>&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android与IOS蓝牙对比"><span class="toc-text"><a href="#Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;" class="headerlink" title="Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;"></a>Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
     </div>
@@ -214,7 +214,7 @@
 
     <div class="post-content">
       
-        <h1 id="BLE简述"><a href="#BLE简述" class="headerlink" title="BLE简述"></a>BLE简述</h1><p>蓝牙是一套非常庞大复杂的协议栈，通俗的说就是一组应用于无线系统通信的约定，各个厂家根据这个约定生产出了各种蓝牙设备。由于蓝牙协议栈非常的庞大，很多厂商并不会完全实现蓝牙协议栈的所有功能。Android 4.3以后蓝牙开发一般都是基于低功耗蓝牙BLE4.0，BLE协议是蓝牙协议的子集。<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_stack.png" alt="BLE协议结构" title="BLE协议结构"><br>上图是BLE协议结构，还是挺复杂的，Android开发人员可能只对GATT这个词有点印象，Android Framework帮我们屏蔽了上述大部分协议细节。Android的bluetooth包提供了BluetoothGattCallback类用来处理蓝牙连接，大致的过程是：</p>
+        <h1 id="BLE简述"><a href="#BLE简述" class="headerlink" title="BLE简述"></a>BLE简述</h1><p>蓝牙是一套非常庞大复杂的协议栈，通俗的说就是一组应用于无线系统通信的约定，各个厂家根据这个约定生产出了各种蓝牙设备。由于蓝牙协议栈非常的庞大，很多厂商并不会完全实现蓝牙协议栈的所有功能。Android 4.3以后蓝牙开发一般都是基于低功耗蓝牙BLE4.0，BLE协议是蓝牙协议的子集。<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_stack.png" alt="BLE协议结构" title="BLE协议结构"><br><a id="more"></a><br>上图是BLE协议结构，还是挺复杂的，Android开发人员可能只对GATT这个词有点印象，Android Framework帮我们屏蔽了上述大部分协议细节。Android的bluetooth包提供了BluetoothGattCallback类用来处理蓝牙连接，大致的过程是：</p>
 <ol>
 <li>扫描蓝牙</li>
 <li>connectGatt发起连接</li>
@@ -249,15 +249,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>原文作者: </span>
+      <span>Author: </span>
       <a href="http://www.xuding.info">XuDing</a>
     </p>
     <p class="copyright-item">
-      <span>原文链接: </span>
+      <span>Link: </span>
       <a href="http://www.xuding.info/2019/02/15/post607/">http://www.xuding.info/2019/02/15/post607/</a>
     </p>
     <p class="copyright-item">
-      <span>许可协议: </span>
+      <span>License: </span>
       
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
@@ -289,7 +289,7 @@
     
       <a class="next" href="/2019/01/13/post606/">
         <span class="next-text nav-default">被误会是表达者的宿命?</span>
-        <span class="prev-text nav-mobile">下一篇</span>
+        <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -358,11 +358,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    主题 - 
+    Theme - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
