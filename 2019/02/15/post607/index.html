@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Android蓝牙开发入坑详解"/>
+  <meta name="description" content="Android蓝牙开发入坑指南"/>
 
 
 
@@ -82,15 +82,23 @@
 
 
 
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "lWAh1CJ8fQpDR0gdVRL3nhtF-gzGzoHsz",
+      appKey: "0u9fC5QTJI4sWsLqKvBEqebQ"
+    });
+  </script>
+
 
 
 
 
 <script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+  window.config = {"leancloud":{"app_id":"lWAh1CJ8fQpDR0gdVRL3nhtF-gzGzoHsz","app_key":"0u9fC5QTJI4sWsLqKvBEqebQ"},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> Android蓝牙开发入坑详解 - XuDing的音符 </title>
+    <title> Android蓝牙开发入坑指南 - XuDing的音符 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -111,7 +119,7 @@
         <li class="mobile-menu-item">
           
           
-            Home
+            首页
           
         </li>
       </a>
@@ -120,7 +128,7 @@
         <li class="mobile-menu-item">
           
           
-            Archives
+            归档
           
         </li>
       </a>
@@ -129,7 +137,7 @@
         <li class="mobile-menu-item">
           
           
-            About
+            关于
           
         </li>
       </a>
@@ -150,7 +158,7 @@
           <a class="menu-item-link" href="/">
             
             
-              Home
+              首页
             
           </a>
         </li>
@@ -159,7 +167,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              Archives
+              归档
             
           </a>
         </li>
@@ -168,7 +176,7 @@
           <a class="menu-item-link" href="/about">
             
             
-              About
+              关于
             
           </a>
         </li>
@@ -188,7 +196,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Android蓝牙开发入坑详解
+          Android蓝牙开发入坑指南
         
       </h1>
 
@@ -198,15 +206,21 @@
         </span>
         
         
+        <span class="post-visits"
+             data-url="/2019/02/15/post607/"
+             data-title="Android蓝牙开发入坑指南">
+          阅读次数 0
+        </span>
+        
       </div>
     </header>
 
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE简述"><span class="toc-text"><a href="#BLE&#x7B80;&#x8FF0;" class="headerlink" title="BLE&#x7B80;&#x8FF0;"></a>BLE&#x7B80;&#x8FF0;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE开发注意点"><span class="toc-text"><a href="#BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;" class="headerlink" title="BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;"></a>BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号干扰"><span class="toc-text"><a href="#&#x4FE1;&#x53F7;&#x5E72;&#x6270;" class="headerlink" title="&#x4FE1;&#x53F7;&#x5E72;&#x6270;"></a>&#x4FE1;&#x53F7;&#x5E72;&#x6270;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙初始化崩溃"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;" class="headerlink" title="&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;"></a>&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接间隔"><span class="toc-text"><a href="#&#x8FDE;&#x63A5;&#x95F4;&#x9694;" class="headerlink" title="&#x8FDE;&#x63A5;&#x95F4;&#x9694;"></a>&#x8FDE;&#x63A5;&#x95F4;&#x9694;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLE与GPS"><span class="toc-text"><a href="#BLE&#x4E0E;GPS" class="headerlink" title="BLE&#x4E0E;GPS"></a>BLE&#x4E0E;GPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配对问题"><span class="toc-text"><a href="#&#x914D;&#x5BF9;&#x95EE;&#x9898;" class="headerlink" title="&#x914D;&#x5BF9;&#x95EE;&#x9898;"></a>&#x914D;&#x5BF9;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙开关问题"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;" class="headerlink" title="&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;"></a>&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android与IOS蓝牙对比"><span class="toc-text"><a href="#Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;" class="headerlink" title="Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;"></a>Android&#x4E0E;IOS&#x84DD;&#x7259;&#x5BF9;&#x6BD4;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE简述"><span class="toc-text"><a href="#BLE&#x7B80;&#x8FF0;" class="headerlink" title="BLE&#x7B80;&#x8FF0;"></a>BLE&#x7B80;&#x8FF0;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BLE开发注意点"><span class="toc-text"><a href="#BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;" class="headerlink" title="BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;"></a>BLE&#x5F00;&#x53D1;&#x6CE8;&#x610F;&#x70B9;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号干扰"><span class="toc-text"><a href="#&#x4FE1;&#x53F7;&#x5E72;&#x6270;" class="headerlink" title="&#x4FE1;&#x53F7;&#x5E72;&#x6270;"></a>&#x4FE1;&#x53F7;&#x5E72;&#x6270;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙初始化崩溃"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;" class="headerlink" title="&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;"></a>&#x84DD;&#x7259;&#x521D;&#x59CB;&#x5316;&#x5D29;&#x6E83;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接间隔"><span class="toc-text"><a href="#&#x8FDE;&#x63A5;&#x95F4;&#x9694;" class="headerlink" title="&#x8FDE;&#x63A5;&#x95F4;&#x9694;"></a>&#x8FDE;&#x63A5;&#x95F4;&#x9694;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLE与GPS"><span class="toc-text"><a href="#BLE&#x4E0E;GPS" class="headerlink" title="BLE&#x4E0E;GPS"></a>BLE&#x4E0E;GPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配对问题"><span class="toc-text"><a href="#&#x914D;&#x5BF9;&#x95EE;&#x9898;" class="headerlink" title="&#x914D;&#x5BF9;&#x95EE;&#x9898;"></a>&#x914D;&#x5BF9;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙开关问题"><span class="toc-text"><a href="#&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;" class="headerlink" title="&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;"></a>&#x84DD;&#x7259;&#x5F00;&#x5173;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android与IOS对比"><span class="toc-text"><a href="#Android&#x4E0E;IOS&#x5BF9;&#x6BD4;" class="headerlink" title="Android&#x4E0E;IOS&#x5BF9;&#x6BD4;"></a>Android&#x4E0E;IOS&#x5BF9;&#x6BD4;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
     </div>
   </div>
 
@@ -223,22 +237,22 @@
 </ol>
 <h1 id="BLE开发注意点"><a href="#BLE开发注意点" class="headerlink" title="BLE开发注意点"></a>BLE开发注意点</h1><p>Android BLE开发过程中遇到的许多问题，严格来说并不都是Android本身的问题，很多问题来自作为通信目标的蓝牙模块，这些问题都需要开发人员注意：</p>
 <h2 id="信号干扰"><a href="#信号干扰" class="headerlink" title="信号干扰"></a>信号干扰</h2><p>蓝牙和WIFI都具有在2.4GHz信道通信的能力，某些Android设备蓝牙与Wifi信号会冲突，干扰特别严重，具体表现为蓝牙连接成功后收发数据时丢包和超时。这个问题如果出现了，几乎没有什么解决方案，只能在上层应用做好容错处理。</p>
-<h2 id="蓝牙初始化崩溃"><a href="#蓝牙初始化崩溃" class="headerlink" title="蓝牙初始化崩溃"></a>蓝牙初始化崩溃</h2><p>这个问题存在于Android4.*的设备，蓝牙扫描设备后会往本地保存扫描记录，但是这个记录有上限，大概是500条，也就是说有搜索过500个不同的蓝牙设备后，手机再调用蓝牙扫描就会崩溃，系统设置里蓝牙扫描也会崩。这个问题还好正常用户很难遇到，而且升级到Android 5.0以上就不会出现了。</p>
+<h2 id="蓝牙初始化崩溃"><a href="#蓝牙初始化崩溃" class="headerlink" title="蓝牙初始化崩溃"></a>蓝牙初始化崩溃</h2><p>这个问题存在于Android4.*的设备，蓝牙扫描设备后会往本地保存扫描记录，但是这个记录有上限，大概是500条，也就是说有搜索过500个不同的蓝牙设备后，手机再调用蓝牙扫描就会崩溃，系统设置里蓝牙扫描也会崩。这个问题影响不大，因为正常用户很难遇到，而且升级到Android 5.0以上就不会出现了。</p>
 <h2 id="连接间隔"><a href="#连接间隔" class="headerlink" title="连接间隔"></a>连接间隔</h2><p>基本上绝大多数Android蓝牙问题都是因为连接间隔导致的，那么连接间隔是什么呢？</p>
-<p>蓝牙通信是基于电磁波的全双工通信，蓝牙通信的双方实际就是在不停的发出广播信号。广播消息意味着所有的设备都能收到消息，那么怎么确认每个消息是谁发给谁的呢？所以要建立蓝牙连接，建立蓝牙连接其实就是双方协商一致，以同一的步调收发数据，这个收发信号的间隔时间称为连接间隔。IOS蓝牙的连接间隔是20ms，直观的感受就是苹果蓝牙传输比较快；而Android蓝牙的连接时隔各厂商都不一样，有40ms、50ms、70ms等等，都比IOS要大一些。还有非常其怪的：华为2018年以后生产的很多手机型号，正常蓝牙通信时是40ms，但如果同时手机正在进行视频聊天，蓝牙连接间隔就会立即增加到70ms。</p>
+<p>蓝牙通信是基于电磁波的全双工通信，蓝牙通信的双方实际就是在不停的发出广播信号。广播消息意味着所有的设备都能收到消息，那么怎么确认每个消息是谁发给谁的呢？所以蓝牙通信前要先建立蓝牙连接，建立蓝牙连接简单理解的话，其实就是双方协商一致，以同一的步调收发数据，这个收发信号的间隔时间称为连接间隔。IOS蓝牙的连接间隔是20ms，直观的感受就是苹果蓝牙传输比较快；而Android蓝牙的连接时隔各厂商都不一样，有40ms、50ms、70ms等等，都比IOS要大一些。还有非常其怪的：华为2018年以后生产的很多手机型号，正常蓝牙通信时是40ms，但如果同时手机正在进行视频聊天，蓝牙连接间隔就会立即增加到70ms。</p>
 <p>蓝牙模块每个连接间隔内收发的数据包有效载荷最大是20字节，写数据时如果往Characteristic里写数据20个字节，多余的数据会丢弃。假设连接间隔是40ms，那么蓝牙模块传输速率就是1000/40*20=500B/s，实在太慢了，BLE协议不适合收发大量数据。</p>
 <p>连接间隔本来是一个非常底层的通信概念，Android开发时无法修改连接间隔。按理说开发APP应该不用关心连接间隔才对，就好像往磁盘上保存文件不用关心磁盘的转速一样，但是通信出错排查问题排查到这儿了，我们又不能不重视，这就有点像路由器的MTU一样，有时还真会导致服务器BUG。</p>
 <p>连接间隔导致的问题一般都是效率问题，收发数据量太大，数据还没传完就超时了，连接间隔是系统控制的，无法修改，所以这个问题没有什么解决方案，只能在软件设计上做好容错处理，给数据传输留足时间。</p>
 <p>连接间隔还会导致一些其怪的丢包问题，这种问题很难排查，好在有蓝牙协议分析仪可以去监听蓝牙信号，不过监听出来了，也没什么解决办法，如果是自研硬件的话，只能在硬件上下点功夫，Android上没有可修改的余地。</p>
 <h2 id="BLE与GPS"><a href="#BLE与GPS" class="headerlink" title="BLE与GPS"></a>BLE与GPS</h2><p>严格来说BLE与GPS真是一点关系都没有，但是Android很出人意料地将这俩联系在了一起，扫描蓝牙设备必须要申请定位权限！硬说的话，可能是因为蓝牙扫描能够获取信号强度，有了信号强度就可以推算距离，间接的就实现了定位吧！Android Framework其实也提供了不需要定位权限的扫描方法，其实就是非BLE的普通蓝牙扫描，但是这样无法获取scanRecord，也就是说无法得到BLE硬件的service uuid以及广播出来的数据，只能得到目标设备名字，几乎没法用。</p>
-<p>但是申请定位权限了并不表示就一定能扫描蓝牙了，有的Android设备必须要打开GPS定位的开关，否则就是扫描不出来，让人摸不着头脑。有时候Logcat里都已经打出来蓝牙扫描的记录，但是就是不触发LeScanCallback的回调，这种现象经常出现在vivo手机上。</p>
+<p>另外，申请定位权限了并不表示就一定能扫描蓝牙了，有的Android设备必须要打开GPS定位的开关，否则就是扫描不出来，让人摸不着头脑。有时候Logcat里都系统日志已经打出来蓝牙扫描记录了，但是就是不触发LeScanCallback的回调，这种现象经常出现在vivo手机上。</p>
 <h2 id="配对问题"><a href="#配对问题" class="headerlink" title="配对问题"></a>配对问题</h2><p>蓝牙协议提供了配对机制，其实就是让蓝牙记住目标设备，下次连接免去了扫描的步骤。其实扫描和配对都不是必须的，只要知道蓝牙设备的MAC地址，就可以直接发起蓝牙连接了（IOS有所差别，只能得到UUID，无法得到MAC地址）。但可能是出于安全考虑，配对之后的设备，蓝牙建立连接时会发起加密申请，询问目标设备是否支持加密通信，哪果目标设备不支持加密又不知道怎么应答，那连接就挂掉了，自研蓝牙设备时需要注意一下。</p>
-<h2 id="蓝牙开关问题"><a href="#蓝牙开关问题" class="headerlink" title="蓝牙开关问题"></a>蓝牙开关问题</h2><p>Android可以通过程序开启、关闭蓝牙，但是开启蓝牙需要动态权限申请，这倒是小事，交互设计时给个对话框和用户说一下就好了。开启蓝牙的操作即时返回结果的，而开启蓝牙是需要时间的，异步处理，大概几十毫秒，所以enable()后立即扫描蓝牙往往什么也搜不到。这个注意一下就好了，代码里加个延时不费事。一个特别要注意的事情，蓝牙enable()和disable()切记不能频繁操作，否则手机蓝牙会出现一现难琢磨的现象，甚至会被搞死机…而且实践发现，代码里enable()和在蓝牙设置里手动开启蓝牙是不一样的，有的时候enable()后蓝牙死活连不上，但是在系统设置里重新关闭开启蓝牙就正常了。总之enable()要谨慎使用，有的手机（三星）特娇贵，蓝牙死机了重启手机都不好使。</p>
-<h2 id="Android与IOS蓝牙对比"><a href="#Android与IOS蓝牙对比" class="headerlink" title="Android与IOS蓝牙对比"></a>Android与IOS蓝牙对比</h2><p>IOS蓝牙比Android蓝牙要稳定的多，毕竟型号单一嘛。在开发层面，IOS蓝牙不会显示设备MAC地址，其实对用户来说一般不会有查看蓝牙MAC地址的需求。蓝牙性上，除了传输效率高，IOS蓝牙建立连接也比Android顺畅得多，尤其是蓝牙模块Characteristic很多的时候Android连接discoverServices会很慢。</p>
+<h2 id="蓝牙开关问题"><a href="#蓝牙开关问题" class="headerlink" title="蓝牙开关问题"></a>蓝牙开关问题</h2><p>Android可以通过程序开启、关闭蓝牙，但是开启蓝牙需要动态权限申请，这倒是小事，交互设计时给个对话框和用户说一下就好了。开启蓝牙的操作即时返回结果的，而开启蓝牙是需要时间的，异步处理，大概几十毫秒，所以enable()后立即扫描蓝牙往往什么也搜不到。这个注意一下就好了，代码里加个延时不费事。一个特别要注意的事情，蓝牙enable()和disable()切记不能频繁操作，否则手机蓝牙会出现一现难琢磨的现象，甚至会被搞死机…而且实践发现，代码里enable()和在蓝牙设置里手动开启蓝牙是不一样的，有的时候enable()后蓝牙死活连不上，但是在系统设置里重新关闭、开启蓝牙就正常了。总之enable()要谨慎使用，有的手机（三星）特娇贵，蓝牙死机了重启手机都不好使。</p>
+<h2 id="Android与IOS对比"><a href="#Android与IOS对比" class="headerlink" title="Android与IOS对比"></a>Android与IOS对比</h2><p>IOS蓝牙比Android蓝牙要稳定的多，毕竟型号单一嘛。在开发层面，IOS蓝牙不会显示设备MAC地址，其实对用户来说一般不会有查看蓝牙MAC地址的需求。蓝牙性能上，除了传输效率高，IOS蓝牙建立连接也比Android顺畅得多，尤其是蓝牙模块Characteristic很多的时候Android连接时discoverServices()会很慢。</p>
 <p>企业采购蓝牙模块千万不能只用iphone做验证，IOS蓝牙实在比Android好太多。IOS上调试蓝牙可以用非常著名的LightBlue，体验非常棒；相应的Android上可以用nRF-Connect，体验差点儿，不过该有的功能都有的。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>个人实践来看，Android蓝牙模块稳定性并不高，和4G、wifi模块相比差很远，这其实是用户需求决定的，手机蓝牙确实很少使用，因而手机厂商对蓝牙模块的重视程度也不高，我们多次发现即使同一型号的手机，蓝牙性能也会天差地别，有的连接很稳定，有的丢包特别严重。我们猜测可能手机代工不一样，或者蓝牙模块不是采购自同一供应商。</p>
 <p>蓝牙协议之所以被很多厂商所接受，就是因其功能很完善，实现灵活性很高，蓝牙模块只要实现蓝牙协议规定的功能即可，而代码如何写这个就是厂商自己的事情了，所以肯定会有兼容性能问题，兼容性问题总结下来就三个：扫描不到、连接不上、收不到数据，企业采购蓝牙模块一定要做好验收工作。</p>
-<p>Anroid蓝牙给开发者的印象多是“不靠谱”，但是用于小规模、短时间数据传输还是非常方便的，再加上低功耗、体积小的特点，蓝牙还是很有的，比如用于共享单车开锁、智能手环等等。如果需要大规模数据传输的话还是wlan比较靠谱，比如智能摄像头、无人机都是采用wlan传输数据，有的智能硬件会把蓝牙与wifi模块相结合，比如通过蓝牙设置wlan密码接入wifi网络。</p>
+<p>Anroid蓝牙给开发者的印象多是“不靠谱”，但是用于小规模、短时间数据传输还是非常方便的，比如用于共享单车开锁、智能手环等等。如果需要大规模数据传输的话还是wlan比较靠谱，比如智能摄像头、无人机都是采用wlan传输数据，有的智能硬件会把蓝牙与wifi模块相结合，比如通过蓝牙设置wlan密码接入wifi网络。蓝牙具有的功耗低、体积小的特点，这是很多无线通信方式无法批拟的，因此蓝牙在物联网领域还是大有可为的，开发者如何把充分利用手机蓝牙，我们还需要不断探索。</p>
 
       
     </div>
@@ -249,15 +263,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>Author: </span>
+      <span>原文作者: </span>
       <a href="http://www.xuding.info">XuDing</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
+      <span>原文链接: </span>
       <a href="http://www.xuding.info/2019/02/15/post607/">http://www.xuding.info/2019/02/15/post607/</a>
     </p>
     <p class="copyright-item">
-      <span>License: </span>
+      <span>许可协议: </span>
       
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
@@ -289,7 +303,7 @@
     
       <a class="next" href="/2019/01/13/post606/">
         <span class="next-text nav-default">被误会是表达者的宿命?</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -358,11 +372,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
