@@ -224,12 +224,12 @@
 
     <div class="post-content">
       
-        <h1 id="BLE简述"><a href="#BLE简述" class="headerlink" title="BLE简述"></a>BLE简述</h1><p>蓝牙是一套非常庞大复杂的协议栈，通俗的说就是一组应用于无线系统通信的约定，各个厂家根据这个约定生产出了各种蓝牙设备。由于蓝牙协议栈非常的庞大，很多厂商并不会完全实现蓝牙协议栈的所有功能。Android 4.3以后蓝牙开发一般都是基于低功耗蓝牙BLE4.0，BLE协议是蓝牙协议的子集。<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_stack.png" alt="BLE协议结构" title="BLE协议结构"><br><a id="more"></a><br>上图是BLE协议结构，还是挺复杂的，Android开发人员可能只对GATT这个词有点印象，Android Framework帮我们屏蔽了上述大部分协议细节。Android的bluetooth包提供了BluetoothGattCallback类用来处理蓝牙连接，大致的过程是：</p>
+        <h1 id="BLE简述"><a href="#BLE简述" class="headerlink" title="BLE简述"></a>BLE简述</h1><p>蓝牙是一套非常庞大复杂的协议栈，通俗的说就是一组应用于无线系统通信的约定，各个厂家根据这个约定生产出了各种蓝牙设备。由于蓝牙协议栈非常的庞大，很多厂商并不会完全实现蓝牙协议栈的所有功能。Android 4.3以后蓝牙开发一般都是基于低功耗蓝牙BLE4.0，BLE协议是蓝牙协议的子集。<br><img src="https://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_stack.png" alt="BLE协议结构" title="BLE协议结构"><br><a id="more"></a><br>上图是BLE协议结构，还是挺复杂的，Android开发人员可能只对GATT这个词有点印象，Android Framework帮我们屏蔽了上述大部分协议细节。Android的bluetooth包提供了BluetoothGattCallback类用来处理蓝牙连接，大致的过程是：</p>
 <ol>
 <li>扫描蓝牙</li>
 <li>connectGatt发起连接</li>
 <li>连接成功，扫描服务(Service)</li>
-<li>读取属性(Characteristic)和描述信息(Description)<br>具体的程序实现网上教程很多，这里不作介绍了，Service、Attribute、Description之间的关系见下图：<br><img src="http://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_profile.png" alt=""><br>蓝牙模块理论上说可以有许多Profile，不过大多数蓝牙模块就一个；Profile也可以包含很多Service（一般就一个），Service可以包含很多Characteristic（一般不止一个），有的蓝牙包含一个读Characteristic，一个写Characteristic，有的蓝牙读写共用一个Characteristic，Characteristic内部包含一个字节数组Value[]，对于读写Characteristic来说Value[]就是用于收发的数据。Android Ble sdk调用比较麻烦，回调太多了，主要原因就在这里，蓝牙协议层级实在太多了。</li>
+<li>读取属性(Characteristic)和描述信息(Description)<br>具体的程序实现网上教程很多，这里不作介绍了，Service、Attribute、Description之间的关系见下图：<br><img src="https://dxdingdu-image.oss-cn-beijing.aliyuncs.com/ble_profile.png" alt=""><br>蓝牙模块理论上说可以有许多Profile，不过大多数蓝牙模块就一个；Profile也可以包含很多Service（一般就一个），Service可以包含很多Characteristic（一般不止一个），有的蓝牙包含一个读Characteristic，一个写Characteristic，有的蓝牙读写共用一个Characteristic，Characteristic内部包含一个字节数组Value[]，对于读写Characteristic来说Value[]就是用于收发的数据。Android Ble sdk调用比较麻烦，回调太多了，主要原因就在这里，蓝牙协议层级实在太多了。</li>
 </ol>
 <h1 id="BLE开发注意点"><a href="#BLE开发注意点" class="headerlink" title="BLE开发注意点"></a>BLE开发注意点</h1><p>Android BLE开发过程中遇到的许多问题，严格来说并不都是Android本身的问题，很多问题来自作为通信目标的蓝牙模块，这些问题都需要开发人员注意：</p>
 <h2 id="信号干扰"><a href="#信号干扰" class="headerlink" title="信号干扰"></a>信号干扰</h2><p>蓝牙和WIFI都具有在2.4GHz信道通信的能力，某些Android设备蓝牙与Wifi信号会冲突，干扰特别严重，具体表现为蓝牙连接成功后收发数据时丢包和超时。这个问题如果出现了，几乎没有什么解决方案，只能在上层应用做好容错处理。</p>
