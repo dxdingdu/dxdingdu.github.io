@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Git简明练级攻略"/>
+
+
+
+
+  <meta name="keywords" content="Git, XuDing的音符" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2019/05/13/post610/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5d0d137156438afac25f52f09ac0707e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Git简明练级攻略 - XuDing的音符 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XuDing的音符</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XuDing的音符</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Git简明练级攻略
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-05-13
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#理解Git"><span class="toc-text"><a href="#&#x7406;&#x89E3;Git" class="headerlink" title="&#x7406;&#x89E3;Git"></a>&#x7406;&#x89E3;Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git常用操作"><span class="toc-text"><a href="#Git&#x5E38;&#x7528;&#x64CD;&#x4F5C;" class="headerlink" title="Git&#x5E38;&#x7528;&#x64CD;&#x4F5C;"></a>Git&#x5E38;&#x7528;&#x64CD;&#x4F5C;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge——新手的拦路虎"><span class="toc-text"><a href="#Merge&#x2014;&#x2014;&#x65B0;&#x624B;&#x7684;&#x62E6;&#x8DEF;&#x864E;" class="headerlink" title="Merge&#x2014;&#x2014;&#x65B0;&#x624B;&#x7684;&#x62E6;&#x8DEF;&#x864E;"></a>Merge&#x2014;&#x2014;&#x65B0;&#x624B;&#x7684;&#x62E6;&#x8DEF;&#x864E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore——提前配置"><span class="toc-text"><a href="#gitignore&#x2014;&#x2014;&#x63D0;&#x524D;&#x914D;&#x7F6E;" class="headerlink" title=".gitignore&#x2014;&#x2014;&#x63D0;&#x524D;&#x914D;&#x7F6E;"></a>.gitignore&#x2014;&#x2014;&#x63D0;&#x524D;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支操作——很容易"><span class="toc-text"><a href="#&#x5206;&#x652F;&#x64CD;&#x4F5C;&#x2014;&#x2014;&#x5F88;&#x5BB9;&#x6613;" class="headerlink" title="&#x5206;&#x652F;&#x64CD;&#x4F5C;&#x2014;&#x2014;&#x5F88;&#x5BB9;&#x6613;"></a>&#x5206;&#x652F;&#x64CD;&#x4F5C;&#x2014;&#x2014;&#x5F88;&#x5BB9;&#x6613;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>最近发现发现很多同学使用git存在误区，很多人使用git已经很久了，在push代码时看到merge的错误信息依然会恐慌。对很多新手程序员来说，git对他们的作用，其实就是备份代码而已。其实备份代码，用网盘就可以了，自动同步，特别方便。</p>
+<h1 id="理解Git"><a href="#理解Git" class="headerlink" title="理解Git"></a>理解Git</h1><p>这篇文章是写给git新手看的。现在很多新手程序员没有接触过svn，我觉得如果先入手svn，再使用git可能容易理解“版本控制”，因为svn足够简单，容易上手。Git是分布式，相对于svn来说是太复杂了。<br><a id="more"></a></p>
+<p>Git和svn的不同之处大致如下：</p>
+<ul>
+<li>分布式  vs  中心式</li>
+<li>全量clone vs 部分check</li>
+<li>本地merge vs 服务器merge</li>
+<li>SHA-1 vs 序号id</li>
+</ul>
+<p>很多同学一听到svn就嗤之以鼻，觉得git是天之骄子。其实svn的中心式架构在大规模项目开发中很有优势，git天生适合小团队开发，如果项目团队超过5个人，merge代码是很频繁的，非常影响工作效率。如果团队管理不善，代码分工不明确，每次commit一大佗代码merge起来都是灾难性的，代码的版本树复杂到界面显示不下。</p>
+<p>得益于中心式架构，svn可以只check一个目录，一个svn可以把整个项目涉及的所以文档、代码、资源统统管理起来，一个svn可以轻松管理前端、后端、app多个project。对于git，一般都是老老实实的一个project一个git，然后再建一个git专门存放各种文档资源。所以有些大厂比如腾讯，至今还在用svn，不是没有道理的。</p>
+<p>那既然看起来git有这么多缺点，大家还要用git呢？因为git功能实在太强大了，相比而言，svn就是个玩具。Git的fork、pull request是非常伟大的发明，没有git就没有互联网百花齐放、百家争鸣的繁荣景象，熟练使用git是程序员翱翔于知识海洋（github）的前提。如果是快速发展的小团队，使伤脑用git就太合适了，这样才能与开源世界无缝衔接，站在巨人的肩膀上。</p>
+<h1 id="Git常用操作"><a href="#Git常用操作" class="headerlink" title="Git常用操作"></a>Git常用操作</h1><p>Git功能强大，比svn强大得多，有很多不容易理解的复杂功能，比如rebase、commit -amend等，并不是说有多难。因为平常工作中几乎用不到，偶尔用一下还特别容易出错，一不小心把把代码库搞趴掉。对于新手来说，我觉得熟练使用以下操作就足够了。</p>
+<ul>
+<li>克隆(clone)</li>
+<li>提交(commit)</li>
+<li>推送(push)</li>
+<li>合并(merge)</li>
+<li>设置忽略(.gitignore)</li>
+<li>分支操作(branch)</li>
+</ul>
+<p>Clone、commit、push大家都很熟练了。不过日常开发过程中，我强烈新手找一款自己喜欢的GUI客户端，比如SourceTree、TortoiseGit、GitExtensions，windows下Git自带的Git GUI也可以。非常不建议在实际项目中使用命令行完成上述操作。有些同学看了网上的教程后就上手了，直接git commit -a提交所有，这是不可取的，因为实际开发过程中，修改的代码不检查，一股脑提交是很危险的，这些代码中可能有未经测试的代码、语法错误，甚至是为了排查bug临时修改的代码，很多团队没有单元测试的，这种情况下特别容易因为失误提交错误的代码。有时候一些配置项，比如debug标识、测试环境配置等，push后会影响其他同事。所以一定要用GUI提交代码，提交前仔细过一遍修改的代码差异，尤其是一些关键的类、公用的代码，磨刀不误砍柴工。IDE自带的git GUI，就很好用，能满足大部分的日常操作。</p>
+<h2 id="Merge——新手的拦路虎"><a href="#Merge——新手的拦路虎" class="headerlink" title="Merge——新手的拦路虎"></a>Merge——新手的拦路虎</h2><p>Merge操作是很多新手入门的门槛。不要畏惧merge，merge不是错误，除非一个人独自开发，否则merge是不可避免的。多人开发的情况下，一般大家都负责各自的模块，各自有各自的代码目录，此时git一般会自动完成merge，只需要commit一下merge状态就行了，SourceTree的话，merge后会自动commit、push，特别人性化。不过更多的时候，git无法自动merge，此时代码文件会出现类似如下的错误：<br><img src="https://dxdingdu-image.oss-cn-beijing.aliyuncs.com/git_1.png" alt=""><br>此时就要人工合并代码，删去错误的代码和箭头，然后commit就可以了。<br>当然，用工具不代表不需要掌握git命令，SourceTree、TortoiseGit等GUI每次操作时都会显示当前执行的命令，开发人员一定要多留意，了解工具的本质。工具使用出现问题不要慌，不要一遍又一遍的点重试，GUI上都会显示错误信息，仔细阅读一下提示信息，很容易找到处理办法。</p>
+<p>Merge结束后，代码树会出现时间线来回窜的现象，有些同学觉得不好看，习惯了就好了。如果对此有洁癖，也有很多办法来解决，比如stash后再拉代码、比如rebase衍合提交。这些操作流程稍多一些，搞不好会搞成一团粥，操作Git要胆大心细。Git的魅力就在于灵活，方法不惟一，不同能力层次的人都可以找到适合自己的用法。</p>
+<h2 id="gitignore——提前配置"><a href="#gitignore——提前配置" class="headerlink" title=".gitignore——提前配置"></a>.gitignore——提前配置</h2><p>设置忽略就是配置.gitignore文件。需要注意的是.gitignore配置要趁早，如果文件已经存在了，这个时候在设置忽略它就比较麻烦。此时必须要先删除该文件，然后commit、push删除服务器文件，然后再重新添加文件。有的同学对ignore文件里的通配符不太熟悉，其实可以在GUI commit界面上设置忽略。不过用工具操作.gitignore经常会出一些诡异的现象，经常ignore不生效，一般是因为git文件太多了，文件状态不能及时刷新。这种问题确实比较头疼，可以刷新一下git状态，clean一下看看效果。</p>
+<p>有的同学可能还会有另一种设置忽略的需求，就是代码库里要保留某个文件，但是不希望提交对这个文件的修改，这个需求.gitignore无法做到。因为只要文件在代码库里存在了，即使用设置了.gitignore，代码依然会被跟踪。查git命令发现还是有办法的，可以在本地仓库<code>git update-index --assume-unchanged</code>来忽略本地的修改。我觉得这个方法还是太复杂了，不实用。毕竟这个不需要修改的文件，一般只是大多数时候不修改而已，有的时候还是要改的。这个时候因为设置了忽略反而容易忘掉，容易捅篓子：本地运行正常，服务器就不行，代码明明全提交了呀，你看暂存区空空如也，最后排查一圈发现是被忽略了，气到吐血。所以还是实用第一，不如在commit代码的时候仔细过一遍代码，把不需要提交的文件给revert了，这样要稳妥些。</p>
+<h2 id="分支操作——很容易"><a href="#分支操作——很容易" class="headerlink" title="分支操作——很容易"></a>分支操作——很容易</h2><p>版本控制软件都有分支功能，都大同小异。分支故名思议，分开的支流。很多项目会都会有同时开发多个版本的需求，此时就需要checkout新的分支。有的团队各个开发人员都建立自己的分支，开发完功能后再合并到主分支。相对于checkout新分支，分支的合并略复杂一点，其实也不复杂，就是一次普普通通的merge操作而已。如果分支分得时间太长了，合并会有一点麻烦，可能两边代码可能已经改得面目全非了，这种情况下合并代码还是把大伙一起叫过来围在身边一起操作比较靠谱。</p>
+<p>有时候合并分支并不想把开发分支上的所有代码都合并到主分支上去，可能只需要合并某一个文件，或者某一次commit。或者通俗的说就是把一个commit，同时提交到两个分支上去。这种需求也很常见，比如紧急修改一些严重bug、修改重要的配置文件等等。这个时候就要用到cherry-pick了，cherry-pick可以直接单独摘取某一次提交合并到其他分支。Git的分支管理比Svn强大太多了，Git分支管理的一种妙用就是配合自动构建，<br>实现Devops。<br><img src="/images/git2.png" alt=""><br>上图显示一种比较简单持续集成方式，开发人员在开发分支上开发，开发完成后按照产品经理的要求把相应的版本merge到发布分支，自动构建系统会自动check发布分支实现构建和发布。实际实践过程中肯定不止这两个分支，比如可能会有测试分支，灰度发布分支等等。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章内容来源于我在部门内部的技术交流分享，用来培训新人，介绍了一些git常见用法，满足日常开发需要。Git功能强大，使用Git一定要胆大心细，学会git、擅用git可以大大提高我们的开发效率。Git贯穿于软件开发过程的方方面面，一个程序员如果精通Git，那他的综合素养一定不会差的。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.xuding.info">XuDing</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.xuding.info/2019/05/13/post610/">http://www.xuding.info/2019/05/13/post610/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Git/">Git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/04/06/post609/">
+        <span class="next-text nav-default">Scrum实践——如何成为ScrumMaster</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dxdingdu@163.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/dxdingdu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">XuDing</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
