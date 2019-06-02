@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="用户关注的一定是用户关注的吗"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XuDing的音符">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.xuding.info/2019/06/02/post611/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5d0d137156438afac25f52f09ac0707e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 用户关注的一定是用户关注的吗 - XuDing的音符 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XuDing的音符</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XuDing的音符</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用户关注的一定是用户关注的吗
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p>前两天一位同事跑过来和我说，咱们APP里医生列表的排序可以改进一下，因为我们有关注医生功能，医生列表应该把用户关注的医生排在前面。</p>
+<p>这个需求不难理解，对用户来说，我关注了的，自然是因为这个医生与众不同，否则关注与不关注有什么区别呢。把关注的医生置顶就是迎合用户，增加用户粘性的作法，很多APP都有这种设计。<br><a id="more"></a></p>
+<p>同事提出建议当然是令人欣慰的，但是就这个需求而言，我没有当场接受，作为程序员，我从技术实现的角度解释了一下没有这么做的原因，因为我们的医生患者关系并不是只有“关注”这一种关系，患者有手术医生、门诊医生，甚至还有推广“扫码”产生的“好友医生”，作为技术要整体考虑，如果是做毕业设计的话，这些都是小事，搜索加权重就行了，我当年刚毕业参加工作时就做过比这复杂的多的搜索。咱们毕竟要做的是给广大用户用的通用产品，还是要想清楚再下手，不要着急，不能想到什么就做什么。就这件事来说，我们有“我的医生”列表，专门用于显示已关注的医生，因此没有必要着急修改医生列表了。</p>
+<p>事情就这么过去了，只是一件平凡的小事。最近老婆找工作，留意到了一家以推荐算法著称的公司，叫今日头条。我忽然又想起了这件小事，我们把关注的医生置顶，其实不也是一种推荐算法吗？但是这样的“推荐”真的是用户需要的吗，我是主动关注了某个事物，但是这个事物为什么被我熟知？实际还是因为另一种其他形式的“推荐”导致的，这其实就是一种无形的操纵。所以有人说美国总统大选存在网络操纵，这是很可怕的。</p>
+<p>另一方面，就算我确实因为兴趣而关注了某个事物，但这也不能表明我只关注这一种事物呀。我记得朋友圈里曾经有人感慨，说哪里有不带推荐功能的APP呀，现在的APP推荐内容都太单一了，没意思！现在翻出来看，这句话真是漆黑夜里的明灯，说出了很多人的心声。要知道，互联网占据了我们太多太多的时间，很多人的休闲活动就是抱着手机，如果不是为了工作，很多人已经不懂得、不愿意和别人面对面交流了。经常有人大声疾呼，要多看实体书不要看电子书，要多出门多走出去看世界，其实互联网本来就应该是用来开拓视野，连结全世界的最佳工具，结果现在反而成为了很多人心灵和思想的“束缚”，这是怎么回事？</p>
+<p>也许，从技术角度出发，这样的“推荐”能够让企业赚得盆满钵满，这就足够了；而对于大多数用户来说，他们并不在乎去“开眼看世界”，能够方便的看到让自己开心的文章、视频，这也足够了。对于需要“开眼看世界”的人，他们自会区分哪些是真的，哪些是假的，哪些是有益的，哪些是无用的，这些人永远是少数派，是“推荐”算法遗漏的那部分样本，是被“推荐”算法的误差掩盖的真理。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.xuding.info">XuDing</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.xuding.info/2019/06/02/post611/">http://www.xuding.info/2019/06/02/post611/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/05/13/post610/">
+        <span class="next-text nav-default">Git简明练级攻略</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dxdingdu@163.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/dxdingdu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">XuDing</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
