@@ -200,6 +200,52 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/02/14/post602/">用RxJava优雅的执行并发网络请求</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-14
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>Android或者ios原生开发，并发网络请求是个难排解的痛。现在来看，这个问题已经不是问题了，写个文章记录一下，毕竟当年曾经为了这个问题操碎了心。说这个事首先要明白下面这个问题：</p>
+<h1 id="痛在哪？——主线程之殇"><a href="#痛在哪？——主线程之殇" class="headerlink" title="痛在哪？——主线程之殇"></a>痛在哪？——主线程之殇</h1><p>Android的消息机制恨死人，众所周知，android UI操作只能在主线程进行，而且主线程里不推荐执行作UI操作以外的一切操作，当年Android早期在主线程里请求网络是不会报错的，顶多把界面卡黑屏。现在这么搞会乍样大家都知道的，编译时会有警告，运行时会crash。如何优雅地请求网络数据，然后切换到主线程去更新UI，无数志士仁人为了解决这个问题操碎了心，早期官方推荐用AsnycTask，后来出现了经典的httpAsync，后来又有volley，现在又有Retrofit。现在的小程序员们不用在乎这些问题，只要拿来用用就行，大公司也都有自己成熟的网络库。而且现在hybird、react native很流行，不会涉及到主线程的问题。但是如果把14年以前的项目源码翻出来，运气好还能看到handler满天飞的情况，真是恶心死人。
+          <div class="read-more">
+            <a href="/2018/02/14/post602/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/01/09/post601/">好久不写博客了</a>
         
       </h1>
@@ -634,57 +680,6 @@
           <p>作为一线研发人员，总是听到经理提出这样的问题：这个东西能不能做？从技术角度出发，我们往往会回答：可以。然后经理又会紧接着问：给你XX的时间，能不能做不出来？这时候研发人员就会变得吞吞吐吐。这个时候经理总会诧异，为什么呢？你自己也承认可以做的，为什么真真正正做起来总是这么费劲？你说一天，我给你一天；你不够，我给你两天，为什么还是做不出来？</p>
           <div class="read-more">
             <a href="/2014/12/08/post551/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2014/07/14/post545/">为何移动开发在行业软件公司的工资赶不上互联网公司</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2014-07-14
-        </span>
-        
-          <span class="post-category">
-            
-              <a href="/categories/往事随风/">往事随风</a>
-            
-          </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>鄙人在行业软件公司，做电子政务方面，确切的说是移动政务方面。</p><p>我记得刚毕业时，在小伙伴们中，我的工资是最高的，结果两年过去了，我的工资变成了最低的了，汗死了。。</p><p>为什么会这样，为什么不能那样？这个问题我思考好了很久很久。
-          <div class="read-more">
-            <a href="/2014/07/14/post545/" class="read-more-link">阅读更多</a>
           </div>
         
       
