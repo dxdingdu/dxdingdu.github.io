@@ -17,9 +17,18 @@
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.4.1",
         "cells": []
+      },
+      {
+        "id": 1,
+        "title": "新通用图",
+        "diagramType": "通用",
+        "placeholder": "新通用图描述",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "version": "2.4.1",
+        "cells": []
       }
     ],
-    "diagramTop": 1,
+    "diagramTop": 2,
     "reviewer": "",
     "threatTop": 0
   }
